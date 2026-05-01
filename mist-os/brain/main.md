@@ -12,7 +12,7 @@ It might sound cliche and I don't like what I'm saying, but Maslow's Hierarchy o
 
 Layer 3: Intelligence-long; tries to understand intent from the user or explore to choose what is the current goal.
 Layer 2: Intelligence-short; performing of the current goal.
-Layer 1: Personality/Mood; defining the current emotional state of teh robot, how fast/energetically does the robot move.
+Layer 1: Personality/Mood; defining the current emotional state of the robot, how fast/energetically does the robot move.
 Layer 0: Instinct; balance, battery, mapping the environment, not-bumping into things.
 
 For the recognition and tracing of the environment, I always thought that 3D-environmental maps like ones from DJI would be the best option, but that is computationally expensive, and not fitting for the first MIST model. However, as we're already planning to put a camera, with facial and object recognition system, maybe, as we recognise objects, we could store them in the order of discovery or groups if seen simultaneously. Combining it with how much we've moved motors and in which direction, we could potentially make an approximate map of the surroundings, which could be useful in back-tracking or even search of objects in some cases? This will be explored upon later.
