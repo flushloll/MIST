@@ -23,6 +23,10 @@ Both eyes and the mouth are handled as three separate objects. Each part has a g
 
 Now that nearly everything is prooved possible, I must figure out on how to simplify process of using the face. Perhpas some mix of pre-build animations and simpler face-changing method would be optimal?
 
+We must figure out how to make the eyes follow the interest of the camera (what is the key feature we're starting into / paying attention to in the camera's object detection) and then look into the same direction. We could set a point towards which the eyes would point (or lack of the point) towards which the face will be animated to look.
+
+Should we add blinking?
+
 ### Eyes
 ```go
 // IdleEye: A circle outline with a gap.
