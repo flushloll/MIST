@@ -10,6 +10,9 @@ type IdleEye struct {
 	BaseFeature
 	Radius  int
 	GapSize float64 // 0.0 (full circle) to 1.0 (empty)
+
+	TargetRadius  int
+	TargetGapSize float64
 }
 
 func (e *IdleEye) Draw(img *image.RGBA) {
@@ -17,10 +20,21 @@ func (e *IdleEye) Draw(img *image.RGBA) {
 	DrawArc(img, e.Position, int(float64(e.Radius)*e.Scale), e.LineWidth, e.Rotation, gapRadians, e.Color)
 }
 
+func (e *IdleEye) Update(dt float64) {
+	e.BaseFeature.Update(dt)
+	if e.TransitionRate <= 0 { return }
+	t := e.TransitionRate * dt * 60.0
+	if t > 1.0 { t = 1.0 }
+	e.Radius = LerpInt(e.Radius, e.TargetRadius, t)
+	e.GapSize = Lerp(e.GapSize, e.TargetGapSize, t)
+}
+
 // Energetic(); like "> <".
 type EnergeticEye struct {
 	BaseFeature
 	Size int
+
+	TargetSize int
 }
 
 func (e *EnergeticEye) Draw(img *image.RGBA) {
@@ -35,11 +49,22 @@ func (e *EnergeticEye) Draw(img *image.RGBA) {
 	DrawLine(img, p2, p3, e.LineWidth, e.Color)
 }
 
+func (e *EnergeticEye) Update(dt float64) {
+	e.BaseFeature.Update(dt)
+	if e.TransitionRate <= 0 { return }
+	t := e.TransitionRate * dt * 60.0
+	if t > 1.0 { t = 1.0 }
+	e.Size = LerpInt(e.Size, e.TargetSize, t)
+}
+
 // Soft(height, corner_radius1, corner_radius2); rectangle with one side missing.
 type SoftEye struct {
 	BaseFeature
 	Width  int
 	Height int
+
+	TargetWidth  int
+	TargetHeight int
 }
 
 func (e *SoftEye) Draw(img *image.RGBA) {
@@ -57,13 +82,32 @@ func (e *SoftEye) Draw(img *image.RGBA) {
 	DrawLine(img, p3, p4, e.LineWidth, e.Color)
 }
 
+func (e *SoftEye) Update(dt float64) {
+	e.BaseFeature.Update(dt)
+	if e.TransitionRate <= 0 { return }
+	t := e.TransitionRate * dt * 60.0
+	if t > 1.0 { t = 1.0 }
+	e.Width = LerpInt(e.Width, e.TargetWidth, t)
+	e.Height = LerpInt(e.Height, e.TargetHeight, t)
+}
+
 // Fancy(char, mirrored[true|false]); any character from english alphabet.
 type FancyEye struct {
 	BaseFeature
 	Char     string
 	Mirrored bool
+
+	TargetChar string
 }
 
 func (e *FancyEye) Draw(img *image.RGBA) {
 	DrawChar(img, e.Position, e.Char, e.Scale, e.Rotation, e.Color)
+}
+
+func (e *FancyEye) Update(dt float64) {
+	e.BaseFeature.Update(dt)
+	// Char doesn't interpolate, it snaps
+	if e.TargetChar != "" {
+		e.Char = e.TargetChar
+	}
 }

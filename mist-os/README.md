@@ -24,17 +24,144 @@ Both eyes and the mouth are handled as three separate objects. Each part has a g
 Now that nearly everything is prooved possible, I must figure out on how to simplify process of using the face. Perhpas some mix of pre-build animations and simpler face-changing method would be optimal?
 
 ### Eyes
-- IDLE(circle_angle); a circle outline with a cut part of it denoted by rotation parameter.
-- Energetic(); like "> <".
-- Soft(height, corner_radius1, corner_radius2); rectangle with one side msising. (height is how big the gap between two parallel lines are.)
-- Fancy(char, mirrored[true|false]); any character from english alphabet.
+```go
+// IdleEye: A circle outline with a gap.
+LeftEye: &face.IdleEye{
+    BaseFeature: face.BaseFeature{
+        Position:  image.Pt(width/3, height/2),
+        Scale:     1.0,
+        Rotation:  0.0,
+        LineWidth: 10,
+        Color:     cyan,
+    },
+    Radius:  60,
+    GapSize: 0.2, // 0.0 (full circle) to 1.0 (empty)
+},
 
-### Mouths:
-- None; in a case of only-eyes.
-- Silent(count); line(s) or dot(s).
-- Speech(height, corner_radius1, corner_radius2, corner_radius3, corner_radius4); filled in rectangle with rounded corners.
-- Soft(corner_radius); an outline similar to AND or OR in set theory.
-- Cutie(); uwu-styled w.
+// EnergeticEye: A "> <" styled eye.
+LeftEye: &face.EnergeticEye{
+    BaseFeature: face.BaseFeature{
+        Position:  image.Pt(width/3, height/2),
+        Scale:     1.0,
+        Rotation:  0.0,
+        LineWidth: 10,
+        Color:     cyan,
+    },
+    Size: 60,
+},
+
+// SoftEye: A rectangle with one side missing (U-shape).
+LeftEye: &face.SoftEye{
+    BaseFeature: face.BaseFeature{
+        Position:  image.Pt(width/3, height/2),
+        Scale:     1.0,
+        Rotation:  0.0,
+        LineWidth: 10,
+        Color:     cyan,
+    },
+    Width:  60,
+    Height: 40,
+},
+
+// FancyEye: Any character from the English alphabet.
+LeftEye: &face.FancyEye{
+    BaseFeature: face.BaseFeature{
+        Position:  image.Pt(width/3, height/2),
+        Scale:     1.0,
+        Rotation:  0.0,
+        LineWidth: 10,
+        Color:     cyan,
+    },
+    Char:     "A",
+    Mirrored: false,
+},
+```
+
+### Mouths
+```go
+// NoneMouth: No mouth (useful for eyes-only expressions).
+Mouth: &face.NoneMouth{},
+
+// SilentMouth: One or more horizontal lines or dots.
+Mouth: &face.SilentMouth{
+    BaseFeature: face.BaseFeature{
+        Position:  image.Pt(width/2, 3*height/4),
+        Scale:     1.0,
+        Rotation:  0.0,
+        LineWidth: 8,
+        Color:     cyan,
+    },
+    Count:   3,
+    Width:   40,
+    Height:  8,
+    Spacing: 100,
+},
+
+// SpeechMouth: A filled rectangle.
+Mouth: &face.SpeechMouth{
+    BaseFeature: face.BaseFeature{
+        Position:  image.Pt(width/2, 3*height/4),
+        Scale:     1.0,
+        Rotation:  0.0,
+        LineWidth: 8,
+        Color:     cyan,
+    },
+    Width:  100,
+    Height: 40,
+},
+
+// SoftMouth: An arc outline (smile/frown).
+Mouth: &face.SoftMouth{
+    BaseFeature: face.BaseFeature{
+        Position:  image.Pt(width/2, 3*height/4),
+        Scale:     1.0,
+        Rotation:  0.0,
+        LineWidth: 8,
+        Color:     cyan,
+    },
+    Width:  100,
+    Height: 40,
+},
+
+// CutieMouth: A "w" styled mouth (uwu).
+Mouth: &face.CutieMouth{
+    BaseFeature: face.BaseFeature{
+        Position:  image.Pt(width/2, 3*height/4),
+        Scale:     1.0,
+        Rotation:  0.0,
+        LineWidth: 8,
+        Color:     cyan,
+    },
+    Size: 40,
+},
+```
+
+### Animation
+All features (Eyes and Mouths) support smooth animation for both their base parameters and their specific properties. To animate, set a `TransitionRate` (0.0 to 1.0) and specify `Target` values.
+
+```go
+f := &face.Face{
+    LeftEye: &face.IdleEye{
+        BaseFeature: face.BaseFeature{
+            Position:       image.Pt(width/3, height/2),
+            Scale:          1.0,
+            Rotation:       0.0,
+            LineWidth:      10,
+            Color:          cyan,
+            TargetPosition: image.Pt(width/3, height/2 - 20), // Move up
+            TargetScale:    1.2,                             // Scale up
+            TransitionRate: 0.1,                             // Speed
+        },
+        Radius:       60,
+        TargetRadius: 80, // Expand radius
+    },
+    // ...
+}
+
+// In your main loop:
+f.Update(0.033) // ~30fps
+f.Draw(img)
+```
 
 # Mainboard setup
 For the purposes of saving money and resources, for now, we're using a raspberry pi 5, 8gb version for controlling fo the robot. LANE transcievers will output display connection, Gobot will work with actuators through PCIO interface, power supply will come from usb-c connected to power-bank, and bluethooth/wifi will be used for further connection to other devices, game controller, and maybe additional compute for now.
@@ -48,7 +175,7 @@ We'll setup Tailscale through a token using these commands:
 tailscale up
 
 # Port Forwarding
-echo 'net.ipv4.ip_forward = 1' | sudo tee -a /etc/sysctl.conf
+echo 'net.ipv4.ip_forward = 1' | sudo tee -a /etc/sysctl.conf 
 echo 'net.ipv6.conf.all.forwarding = 1' | sudo tee -a /etc/sysctl.conf
 sudo sysctl -p
 ```

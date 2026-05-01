@@ -12,6 +12,7 @@ import (
 
 type Feature interface {
 	Draw(img *image.RGBA)
+	Update(dt float64)
 	GetBase() *BaseFeature
 }
 
@@ -20,11 +21,33 @@ type BaseFeature struct {
 	Scale     float64
 	Rotation  float64
 	LineWidth int
-	Color     color.Color
+	Color     color.RGBA
+
+	TargetPosition  image.Point
+	TargetScale     float64
+	TargetRotation  float64
+	TargetLineWidth int
+	TargetColor     color.RGBA
+
+	TransitionRate float64 // 0.0 to 1.0 (speed of transition)
 }
 
 func (b *BaseFeature) GetBase() *BaseFeature {
 	return b
+}
+
+func (b *BaseFeature) Update(dt float64) {
+	if b.TransitionRate <= 0 {
+		return
+	}
+	t := b.TransitionRate * dt * 60.0
+	if t > 1.0 { t = 1.0 }
+
+	b.Position = LerpPoint(b.Position, b.TargetPosition, t)
+	b.Scale = Lerp(b.Scale, b.TargetScale, t)
+	b.Rotation = Lerp(b.Rotation, b.TargetRotation, t)
+	b.LineWidth = LerpInt(b.LineWidth, b.TargetLineWidth, t)
+	b.Color = LerpColor(b.Color, b.TargetColor, t)
 }
 
 type Face struct {
@@ -37,6 +60,35 @@ func (f *Face) Draw(img *image.RGBA) {
 	if f.LeftEye != nil { f.LeftEye.Draw(img) }
 	if f.RightEye != nil { f.RightEye.Draw(img) }
 	if f.Mouth != nil { f.Mouth.Draw(img) }
+}
+
+func (f *Face) Update(dt float64) {
+	if f.LeftEye != nil { f.LeftEye.Update(dt) }
+	if f.RightEye != nil { f.RightEye.Update(dt) }
+	if f.Mouth != nil { f.Mouth.Update(dt) }
+}
+
+// --- ANIMATION HELPERS ---
+
+func Lerp(a, b, t float64) float64 {
+	return a + (b-a)*t
+}
+
+func LerpInt(a, b int, t float64) int {
+	return int(math.Round(float64(a) + float64(b-a)*t))
+}
+
+func LerpPoint(a, b image.Point, t float64) image.Point {
+	return image.Pt(LerpInt(a.X, b.X, t), LerpInt(a.Y, b.Y, t))
+}
+
+func LerpColor(a, b color.RGBA, t float64) color.RGBA {
+	return color.RGBA{
+		R: uint8(LerpInt(int(a.R), int(b.R), t)),
+		G: uint8(LerpInt(int(a.G), int(b.G), t)),
+		B: uint8(LerpInt(int(a.B), int(b.B), t)),
+		A: uint8(LerpInt(int(a.A), int(b.A), t)),
+	}
 }
 
 // --- SOLID HELPERS ---
@@ -75,15 +127,47 @@ func DrawArc(img *image.RGBA, center image.Point, radius int, thickness int, rot
 }
 
 func DrawRotatedRect(img *image.RGBA, center image.Point, w, h int, angle float64, c color.Color) {
+	DrawRoundedRotatedRect(img, center, w, h, angle, 0, 0, 0, 0, c)
+}
+
+func DrawRoundedRotatedRect(img *image.RGBA, center image.Point, w, h int, angle float64, r1, r2, r3, r4 float64, c color.Color) {
 	cosA, sinA := math.Sincos(angle)
 	halfW, halfH := float64(w)/2.0, float64(h)/2.0
+
+	// Ensure radii don't exceed half dimensions
+	maxR := math.Min(halfW, halfH)
+	r1 = math.Min(r1, maxR)
+	r2 = math.Min(r2, maxR)
+	r3 = math.Min(r3, maxR)
+	r4 = math.Min(r4, maxR)
+
 	bound := int(math.Sqrt(float64(w*w + h*h))) / 2 + 1
 	for y := -bound; y <= bound; y++ {
 		for x := -bound; x <= bound; x++ {
 			tx := float64(x)*cosA + float64(y)*sinA
 			ty := -float64(x)*sinA + float64(y)*cosA
+
 			if math.Abs(tx) <= halfW && math.Abs(ty) <= halfH {
-				img.Set(center.X+x, center.Y+y, c)
+				inCorner := false
+				var cx, cy, r float64
+
+				if tx < -halfW+r1 && ty < -halfH+r1 { // TL
+					cx, cy, r, inCorner = -halfW+r1, -halfH+r1, r1, true
+				} else if tx > halfW-r2 && ty < -halfH+r2 { // TR
+					cx, cy, r, inCorner = halfW-r2, -halfH+r2, r2, true
+				} else if tx > halfW-r3 && ty > halfH-r3 { // BR
+					cx, cy, r, inCorner = halfW-r3, halfH-r3, r3, true
+				} else if tx < -halfW+r4 && ty > halfH-r4 { // BL
+					cx, cy, r, inCorner = -halfW+r4, halfH-r4, r4, true
+				}
+
+				if inCorner {
+					if (tx-cx)*(tx-cx)+(ty-cy)*(ty-cy) <= r*r {
+						img.Set(center.X+x, center.Y+y, c)
+					}
+				} else {
+					img.Set(center.X+x, center.Y+y, c)
+				}
 			}
 		}
 	}
