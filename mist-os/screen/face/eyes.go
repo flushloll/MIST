@@ -22,9 +22,13 @@ func (e *IdleEye) Draw(img *image.RGBA) {
 
 func (e *IdleEye) Update(dt float64) {
 	e.BaseFeature.Update(dt)
-	if e.TransitionRate <= 0 { return }
+	if e.TransitionRate <= 0 {
+		return
+	}
 	t := e.TransitionRate * dt * 60.0
-	if t > 1.0 { t = 1.0 }
+	if t > 1.0 {
+		t = 1.0
+	}
 	e.Radius = LerpInt(e.Radius, e.TargetRadius, t)
 	e.GapSize = Lerp(e.GapSize, e.TargetGapSize, t)
 }
@@ -51,9 +55,13 @@ func (e *EnergeticEye) Draw(img *image.RGBA) {
 
 func (e *EnergeticEye) Update(dt float64) {
 	e.BaseFeature.Update(dt)
-	if e.TransitionRate <= 0 { return }
+	if e.TransitionRate <= 0 {
+		return
+	}
 	t := e.TransitionRate * dt * 60.0
-	if t > 1.0 { t = 1.0 }
+	if t > 1.0 {
+		t = 1.0
+	}
 	e.Size = LerpInt(e.Size, e.TargetSize, t)
 }
 
@@ -84,9 +92,13 @@ func (e *SoftEye) Draw(img *image.RGBA) {
 
 func (e *SoftEye) Update(dt float64) {
 	e.BaseFeature.Update(dt)
-	if e.TransitionRate <= 0 { return }
+	if e.TransitionRate <= 0 {
+		return
+	}
 	t := e.TransitionRate * dt * 60.0
-	if t > 1.0 { t = 1.0 }
+	if t > 1.0 {
+		t = 1.0
+	}
 	e.Width = LerpInt(e.Width, e.TargetWidth, t)
 	e.Height = LerpInt(e.Height, e.TargetHeight, t)
 }
@@ -106,7 +118,6 @@ func (e *FancyEye) Draw(img *image.RGBA) {
 
 func (e *FancyEye) Update(dt float64) {
 	e.BaseFeature.Update(dt)
-	// Char doesn't interpolate, it snaps
 	if e.TargetChar != "" {
 		e.Char = e.TargetChar
 	}

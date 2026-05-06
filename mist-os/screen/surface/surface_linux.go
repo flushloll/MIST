@@ -47,6 +47,10 @@ func (s *FBSurface) Present(img *image.RGBA) error {
 	return err
 }
 
+func (s *FBSurface) GetMousePos() (int, int, bool) { return 0, 0, false }
+func (s *FBSurface) PollEvent() any                { return nil }
+func (s *FBSurface) IsQuitEvent(event any) bool    { return false }
+
 func (s *FBSurface) Close() {
 	if s.file != nil {
 		s.file.Close()

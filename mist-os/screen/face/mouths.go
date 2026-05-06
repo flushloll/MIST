@@ -72,7 +72,7 @@ type SpeechMouth struct {
 	BaseFeature
 	Width    int
 	Height   int
-	TLRadius float64 // 0.0 to 1.0
+	TLRadius float64
 	TRRadius float64
 	BRRadius float64
 	BLRadius float64
@@ -154,7 +154,7 @@ type CutieMouth struct {
 func (m *CutieMouth) Draw(img *image.RGBA) {
 	s := int(float64(m.Size) * m.Scale)
 	center := m.Position
-	rot := m.Rotation - 1.57 // -PI/2
+	rot := m.Rotation - 1.57
 
 	leftCenter := RotatePoint(image.Pt(center.X-s/2, center.Y), center, m.Rotation)
 	rightCenter := RotatePoint(image.Pt(center.X+s/2, center.Y), center, m.Rotation)

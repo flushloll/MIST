@@ -15,6 +15,8 @@ Layer 2: Intelligence-short; performing of the current goal.
 Layer 1: Personality/Mood; defining the current emotional state of the robot, how fast/energetically does the robot move.
 Layer 0: Instinct; balance, battery, mapping the environment, not-bumping into things.
 
+The intelligence layers could be controlled from Gemma models, which is looking promising. While Raspberry Pi doesn't have enough computational capacity to handle these models, it could be used as one of the methods of controlling MIST. Gemma 31b seems quite good for this!
+
 For the recognition and tracing of the environment, I always thought that 3D-environmental maps like ones from DJI would be the best option, but that is computationally expensive, and not fitting for the first MIST model. However, as we're already planning to put a camera, with facial and object recognition system, maybe, as we recognise objects, we could store them in the order of discovery or groups if seen simultaneously. Combining it with how much we've moved motors and in which direction, we could potentially make an approximate map of the surroundings, which could be useful in back-tracking or even search of objects in some cases? This will be explored upon later.
 
 As we're attaching a camera to the robot, why not go all in with a full-spectrum camera? It would not only allow us to just take pretty pictures of what we don't see but also see in the dark, see alive beaings, and more. The seeing in the dark especially would be way more helpful for turned off lights in the room or night.
@@ -27,12 +29,17 @@ Should we allow her to write functions/skils for herself?
 
 We could and probably should add an [UWB](https://ja.aliexpress.com/item/1005001575673574.html?spm=a2g0o.wiki_detail.0.0.28ee65f4OaKNx0&gatewayAdapt=glo2jpn)-styled module for positioning of MIST. It would help maintaining the "follow" functionality, especially in larger crows like where we're going to, fallout. Gladly, they seem to be super-cheap. How should the "charm" / "legendary item which grands you the status of the MIST's owner" look like?
 
+Esia liked Laomedeia; and Umabrek liked Sulafat
+
 ## mini-study: Welch Labs
 Author tells the story of [how physical intelligence](https://youtu.be/2mrGMMmrVNE?si=-nkhhYY6tyNthH1P) has developed over time.
 
 ## mini-study: Iterator
 ## mini-study: Larry
 ## mini-study: Cozmo & Vector
+
+## mini-study: Gemini Robotics 1.5
+I understand why they do so. This seems like a 
 
 ## mini-study: Disney's Droid
 [Disney's Droid Example](https://youtu.be/7_LW7u-nk6Q?si=kZ3XEBfBi1F7m4WY) shows a method on they've introduced different ways of robot movement. It features both freeform animations and RL-based movement which takes inputs of walking velocity and robot pose and outputs actuator commands. PPO algorithm is used. It has 5 actuators in each leg and 4 in the neck. Speakers, antenas, eyes. 1 hour battery life.

@@ -52,19 +52,28 @@ func (s *SDLSurface) Present(img *image.RGBA) error {
 	if s.texture == nil {
 		return nil
 	}
-
-	for event := sdl.PollEvent(); event != nil; event = sdl.PollEvent() {
-		switch event.(type) {
-		case *sdl.QuitEvent:
-			return nil
-		}
-	}
-
 	s.texture.Update(nil, unsafe.Pointer(&img.Pix[0]), img.Stride)
 	s.renderer.Clear()
 	s.renderer.Copy(s.texture, nil, nil)
 	s.renderer.Present()
 	return nil
+}
+
+func (s *SDLSurface) PollEvent() any {
+	return sdl.PollEvent()
+}
+
+func (s *SDLSurface) IsQuitEvent(event any) bool {
+	if event == nil {
+		return false
+	}
+	_, ok := event.(*sdl.QuitEvent)
+	return ok
+}
+
+func (s *SDLSurface) GetMousePos() (int, int, bool) {
+	x, y, _ := sdl.GetMouseState()
+	return int(x), int(y), true
 }
 
 func (s *SDLSurface) Close() {
