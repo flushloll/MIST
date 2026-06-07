@@ -10,6 +10,7 @@ type Feature interface {
 	Draw(img *image.RGBA)
 	Update(dt float64)
 	GetBase() *BaseFeature
+	IsClosed() bool
 }
 
 type BaseFeature struct {
@@ -19,15 +20,15 @@ type BaseFeature struct {
 	LineWidth int
 	Color     color.RGBA
 
-	AnchorPosition  image.Point 
+	AnchorPosition  image.Point
 	TargetPosition  image.Point
 	TargetScale     float64
 	TargetRotation  float64
 	TargetLineWidth int
 	TargetColor     color.RGBA
 
-	RotationSpeed float64 
-	TransitionRate float64 
+	RotationSpeed  float64
+	TransitionRate float64
 }
 
 func (b *BaseFeature) GetBase() *BaseFeature {
