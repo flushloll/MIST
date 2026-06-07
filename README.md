@@ -39,7 +39,19 @@ export PATH="$PATH:$GOPATH/bin"
 source ~/.bashrc
 ```
 
-#### 4. Setting up mist-os
+#### 4. Installing text to voice (espeak)
+```bash
+# Configure audio drivers:
+dietpi-config
+# > Select '2: Audio Options'
+# > For the 'Sound card', select 'rpi-bcm2835-hdmi' or 'usb-dac' depending on your speaker.
+
+# Install text to speech module:
+apt update
+sudo apt install espeak-ng -y
+```
+
+#### 5. Setting up mist-os
 Note that mist-os isn't an actual operating system, but rather just a program.
 ```bash
 # Install mist-os:
