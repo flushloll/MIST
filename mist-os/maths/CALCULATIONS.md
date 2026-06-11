@@ -1,2 +1,0 @@
-# Calculations
-Perhpas instead of trying to control each arm/leg of MIST together in the brain, we could optimise it by designing the system in a game-styled way, where the brain tells the robot "where to move" and "how fast to move', with the maths part calculating how exactly we can achieve it with low-level control of actuators.

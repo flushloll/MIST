@@ -51,7 +51,17 @@ apt update
 sudo apt install espeak-ng -y
 ```
 
-#### 5. Setting up mist-os
+#### 6. Setting up ollama
+```bash
+# Install Ollama
+sudo apt-get install zstd
+curl -fsSL https://ollama.com/install.sh | sh
+
+# Get the model
+ollama pull qwen3.5:0.8b
+```
+
+#### 7. Setting up mist-os
 Note that mist-os isn't an actual operating system, but rather just a program.
 ```bash
 # Install mist-os:
@@ -84,12 +94,38 @@ exit 0
 
 ### Hardware
 For the context, MIST is originally modelled in CTC Creo in imperial units.
-#### BOM
+#### 1. BOM - Bill of Materials
 !TODO: Insert BOM from Google Sheets
-#### Electronics
+
+#### 2. Build Guide
+!TODO: Create LEGO-styled build guide? (would be cool but optional)
+
+#### 3. Electronics Wiring Guide
 !TODO: Insert wiring guide from Figma
 
+#### 4. Enable I2C & Components Test
+```zsh
+# Open the configuration menu:
+dietpi-config
+# > Navigate to 'Advanced Options',
+# > Ensure 'I2C state' is selected as 'On',
+# > Ensure 'I2C frequency' is set to 100 kHz,
+# > Exit and reboot the raspberry pi.
+
+# To see if your IMU module is connected, run:
+sudo i2cdetect -y 1
+# 0x4b is IMU
+# ____ is PCA9685
+```
+
+#### 5. Next thing
+
 ## Contribute
+### Realtime file sync between devices
+In order to sync files between devices in real-time:
+```bash
+rsync -avz /path/to/local/dir/ username@remote_ip:/path/to/remote/dir/
+```
 
 ### State of Repository
 #### mist-os

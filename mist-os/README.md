@@ -5,13 +5,13 @@
   + controller
   + screen
   + voice
+  + imu
 
   - ai
   - body
   - hand
   - brain
   - eyes
-  - imu
   - maths
 
   - main

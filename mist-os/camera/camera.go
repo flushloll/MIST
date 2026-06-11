@@ -41,3 +41,10 @@ func (c *Camera) Shoot() ([]byte, error) {
 func (c *Camera) Close() {
 	c.Device.Close()
 }
+
+func DisposableCamera() []byte {
+	cam, _ := NewCamera(0)
+	defer cam.Close()
+	imageBytes, _ := cam.Shoot()
+	return imageBytes
+}
