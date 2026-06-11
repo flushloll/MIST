@@ -1,6 +1,8 @@
 # MIST (WIP)
 MIST is a robot in the form of a rice-cooker with legs, originating from the Pantheon Show. Our goal in this project was to test our skills whilst making something beautiful. 
 
+![CAD Model](assets/ccd2b67adb1f2e972bdda4df0c3afa52f13996bc6b8d59f18e003bfad196b90e.png)
+
 ## Replication
 All of the instructions on recreating the robot are provided below.
 
@@ -130,4 +132,10 @@ rsync -avz /path/to/local/dir/ username@remote_ip:/path/to/remote/dir/
 ### State of Repository
 #### mist-os
 #### simulations
+#### wiring
+for William:
+- I have finilised the power distribution for the project,
+- I vaguely grasped concept for common ground, did I understand it correctly? Could you please check that as well?
+for Esia:
+- I couldn't get US aliexpress working while Amazon's options and price wasn't good; could you please pick the correct Buck Converters and power distribution boards and batteries?
 #### CAD
