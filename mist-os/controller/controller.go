@@ -2,20 +2,56 @@ package controller
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/veandco/go-sdl2/sdl"
 )
 
 const DeadZone = 6769
 
+type Button struct {
+	Pressed     bool
+	LastPressed time.Time
+	LastLifted  time.Time
+}
+
+func (b *Button) set(pressed bool) time.Duration {
+	if pressed == b.Pressed {
+		return 0
+	}
+	b.Pressed = pressed
+	now := time.Now()
+	if pressed {
+		b.LastPressed = now
+		return 0
+	} else {
+		b.LastLifted = now
+		return b.LastLifted.Sub(b.LastPressed)
+	}
+}
+
+func (b *Button) HeldDuration() time.Duration {
+	if !b.Pressed {
+		return 0
+	}
+	return time.Since(b.LastPressed)
+}
+
+func (b *Button) PressDuration() time.Duration {
+	if b.LastLifted.Before(b.LastPressed) {
+		return 0
+	}
+	return b.LastLifted.Sub(b.LastPressed)
+}
+
 type Controller struct {
 	sdlID          sdl.JoystickID
 	gameController *sdl.GameController
 
-	LEFT, RIGHT, UP, DOWN           bool
-	SQUARE, CIRCLE, TRIANGLE, CROSS bool
-	L1, R1, L3, R3                  bool
-	START, SELECT, TOUCHPAD         bool
+	LEFT, RIGHT, UP, DOWN           Button
+	SQUARE, CIRCLE, TRIANGLE, CROSS Button
+	L1, R1, L3, R3                  Button
+	START, SELECT, TOUCHPAD         Button
 
 	LeftStickX, LeftStickY   float32
 	RightStickX, RightStickY float32
@@ -61,38 +97,38 @@ func (c *Controller) Update() {
 			switch t.Button {
 
 			case sdl.CONTROLLER_BUTTON_A:
-				c.CROSS = isPressed
+				c.CROSS.set(isPressed)
 			case sdl.CONTROLLER_BUTTON_B:
-				c.CIRCLE = isPressed
+				c.CIRCLE.set(isPressed)
 			case sdl.CONTROLLER_BUTTON_X:
-				c.SQUARE = isPressed
+				c.SQUARE.set(isPressed)
 			case sdl.CONTROLLER_BUTTON_Y:
-				c.TRIANGLE = isPressed
+				c.TRIANGLE.set(isPressed)
 
 			case sdl.CONTROLLER_BUTTON_DPAD_UP:
-				c.UP = isPressed
+				c.UP.set(isPressed)
 			case sdl.CONTROLLER_BUTTON_DPAD_DOWN:
-				c.DOWN = isPressed
+				c.DOWN.set(isPressed)
 			case sdl.CONTROLLER_BUTTON_DPAD_LEFT:
-				c.LEFT = isPressed
+				c.LEFT.set(isPressed)
 			case sdl.CONTROLLER_BUTTON_DPAD_RIGHT:
-				c.RIGHT = isPressed
+				c.RIGHT.set(isPressed)
 
 			case sdl.CONTROLLER_BUTTON_LEFTSHOULDER:
-				c.L1 = isPressed
+				c.L1.set(isPressed)
 			case sdl.CONTROLLER_BUTTON_RIGHTSHOULDER:
-				c.R1 = isPressed
+				c.R1.set(isPressed)
 			case sdl.CONTROLLER_BUTTON_LEFTSTICK:
-				c.L3 = isPressed
+				c.L3.set(isPressed)
 			case sdl.CONTROLLER_BUTTON_RIGHTSTICK:
-				c.R3 = isPressed
+				c.R3.set(isPressed)
 
 			case sdl.CONTROLLER_BUTTON_START:
-				c.START = isPressed
+				c.START.set(isPressed)
 			case sdl.CONTROLLER_BUTTON_BACK:
-				c.SELECT = isPressed
+				c.SELECT.set(isPressed)
 			case 20:
-				c.TOUCHPAD = isPressed
+				c.TOUCHPAD.set(isPressed)
 			}
 
 		// Analog Sticks
@@ -178,26 +214,26 @@ func abs(x int16) int16 {
 // 		fmt.Println("--------------------------------------------------")
 
 // 		// Row 1: Shoulders & Triggers
-// 		fmt.Printf(" L1: %s   R1: %s\n", formatBool(controller.L1, "L1"), formatBool(controller.R1, "R1"))
+// 		fmt.Printf(" L1: %s   R1: %s\n", formatBool(controller.L1.Pressed, "L1"), formatBool(controller.R1.Pressed, "R1"))
 // 		fmt.Printf(" L2 Trigger: %5.2f                  R2 Trigger: %5.2f\n", controller.L2, controller.R2)
 // 		fmt.Println()
 
 // 		// Row 2: Navigation & Specials
-// 		fmt.Printf(" Create/Select: %s   Options/Start: %s\n", formatBool(controller.SELECT, "SHARE"), formatBool(controller.START, "OPT "))
-// 		fmt.Printf(" Touchpad Click:%s\n", formatBool(controller.TOUCHPAD, "PAD"))
+// 		fmt.Printf(" Create/Select: %s   Options/Start: %s\n", formatBool(controller.SELECT.Pressed, "SHARE"), formatBool(controller.START.Pressed, "OPT "))
+// 		fmt.Printf(" Touchpad Click:%s\n", formatBool(controller.TOUCHPAD.Pressed, "PAD"))
 // 		fmt.Println()
 
 // 		// Row 3: D-Pad & Face Buttons
 // 		fmt.Printf(" D-PAD:            FACE BUTTONS:\n")
-// 		fmt.Printf("    %s                 %s\n", formatBool(controller.UP, "▲"), formatBool(controller.TRIANGLE, "▲ TRIANGLE"))
-// 		fmt.Printf(" %s   %s       %s   %s\n", formatBool(controller.LEFT, "◀"), formatBool(controller.RIGHT, "▶"), formatBool(controller.SQUARE, "■ SQUARE  "), formatBool(controller.CIRCLE, "● CIRCLE  "))
-// 		fmt.Printf("    %s                 %s\n", formatBool(controller.DOWN, "▼"), formatBool(controller.CROSS, "✖ CROSS   "))
+// 		fmt.Printf("    %s                 %s\n", formatBool(controller.UP.Pressed, "▲"), formatBool(controller.TRIANGLE.Pressed, "▲ TRIANGLE"))
+// 		fmt.Printf(" %s   %s       %s   %s\n", formatBool(controller.LEFT.Pressed, "◀"), formatBool(controller.RIGHT.Pressed, "▶"), formatBool(controller.SQUARE.Pressed, "■ SQUARE  "), formatBool(controller.CIRCLE.Pressed, "● CIRCLE  "))
+// 		fmt.Printf("    %s                 %s\n", formatBool(controller.DOWN.Pressed, "▼"), formatBool(controller.CROSS.Pressed, "✖ CROSS   "))
 // 		fmt.Println()
 
 // 		// Row 4: Joysticks
 // 		fmt.Println(" ANALOG STICKS:")
-// 		fmt.Printf(" Left Stick:  X: %5.2f, Y: %5.2f  %s\n", controller.LeftStickX, controller.LeftStickY, formatBool(controller.L3, "L3 Click"))
-// 		fmt.Printf(" Right Stick: X: %5.2f, Y: %5.2f  %s\n", controller.RightStickX, controller.RightStickY, formatBool(controller.R3, "R3 Click"))
+// 		fmt.Printf(" Left Stick:  X: %5.2f, Y: %5.2f  %s\n", controller.LeftStickX, controller.LeftStickY, formatBool(controller.L3.Pressed, "L3 Click"))
+// 		fmt.Printf(" Right Stick: X: %5.2f, Y: %5.2f  %s\n", controller.RightStickX, controller.RightStickY, formatBool(controller.R3.Pressed, "R3 Click"))
 // 		fmt.Println("==================================================")
 
 // 		time.Sleep(16 * time.Millisecond) // Poll at ~60 FPS

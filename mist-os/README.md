@@ -8,14 +8,16 @@ Finished:
   + voice
   + imu
   + actuators
+  + telegraph
 
 Doing:
   ~ ai
+  ~ 
 
 To do:
   - hand
   - brain
-  - main
+  - body
 
 I think not needed anymore:
   - eyes

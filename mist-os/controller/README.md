@@ -13,9 +13,10 @@ import (
 
 func main() {
 	controller, _ := controller.NewController()
+	defer controller.Close()
 	for {
 		controller.Update()
-		if controller.CROSS { // all of the buttons and axis are in Controller struct.
+		if controller.CROSS.Pressed { // all of the buttons and axis are in Controller struct.
 			fmt.Printf("CROSS is hled down %v\n", time.Now())
 		}
 	}
