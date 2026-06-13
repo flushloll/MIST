@@ -2,6 +2,7 @@ package controller
 
 import (
 	"fmt"
+	"math"
 	"time"
 
 	"github.com/veandco/go-sdl2/sdl"
@@ -44,6 +45,12 @@ func (b *Button) PressDuration() time.Duration {
 	return b.LastLifted.Sub(b.LastPressed)
 }
 
+type SensorData struct {
+	GyroX, GyroY, GyroZ    float32
+	AccelX, AccelY, AccelZ float32
+	Roll, Pitch            float32
+}
+
 type Controller struct {
 	sdlID          sdl.JoystickID
 	gameController *sdl.GameController
@@ -56,6 +63,8 @@ type Controller struct {
 	LeftStickX, LeftStickY   float32
 	RightStickX, RightStickY float32
 	L2, R2                   float32
+
+	Motion SensorData
 }
 
 func NewController() (*Controller, error) {
@@ -70,6 +79,17 @@ func NewController() (*Controller, error) {
 	gc := sdl.GameControllerOpen(0)
 	if gc == nil {
 		return nil, fmt.Errorf("failed to open game controller: %v", sdl.GetError())
+	}
+
+	if gc.HasSensor(sdl.SENSOR_ACCEL) {
+		if err := gc.SetSensorEnabled(sdl.SENSOR_ACCEL, true); err != nil {
+			fmt.Println("accel enable error:", err)
+		}
+	}
+	if gc.HasSensor(sdl.SENSOR_GYRO) {
+		if err := gc.SetSensorEnabled(sdl.SENSOR_GYRO, true); err != nil {
+			fmt.Println("gyro enable error:", err)
+		}
 	}
 
 	joystick := gc.Joystick()
@@ -89,7 +109,7 @@ func (c *Controller) Update() {
 	for event := sdl.PollEvent(); event != nil; event = sdl.PollEvent() {
 		switch t := event.(type) {
 		// Buttons
-		case *sdl.ControllerButtonEvent:
+		case sdl.ControllerButtonEvent:
 			if t.Which != c.sdlID {
 				continue
 			}
@@ -132,7 +152,7 @@ func (c *Controller) Update() {
 			}
 
 		// Analog Sticks
-		case *sdl.ControllerAxisEvent:
+		case sdl.ControllerAxisEvent:
 			if t.Which != c.sdlID {
 				continue
 			}
@@ -167,6 +187,25 @@ func (c *Controller) Update() {
 				c.L2 = fVal
 			case sdl.CONTROLLER_AXIS_TRIGGERRIGHT:
 				c.R2 = fVal
+			}
+
+		// Sensors
+		case sdl.ControllerSensorEvent:
+			if t.Which != c.sdlID {
+				continue
+			}
+			switch sdl.SensorType(t.Sensor) {
+			case sdl.SENSOR_ACCEL:
+				c.Motion.AccelX = t.Data[0]
+				c.Motion.AccelY = t.Data[1]
+				c.Motion.AccelZ = t.Data[2]
+
+				c.Motion.Roll = float32(math.Atan2(float64(c.Motion.AccelX), float64(c.Motion.AccelZ))) * 180 / math.Pi
+				c.Motion.Pitch = float32(math.Atan2(float64(c.Motion.AccelY), float64(c.Motion.AccelZ))) * 180 / math.Pi
+			case sdl.SENSOR_GYRO:
+				c.Motion.GyroX = t.Data[0]
+				c.Motion.GyroY = t.Data[1]
+				c.Motion.GyroZ = t.Data[2]
 			}
 		}
 	}
@@ -222,6 +261,14 @@ func abs(x int16) int16 {
 // 		fmt.Printf(" Create/Select: %s   Options/Start: %s\n", formatBool(controller.SELECT.Pressed, "SHARE"), formatBool(controller.START.Pressed, "OPT "))
 // 		fmt.Printf(" Touchpad Click:%s\n", formatBool(controller.TOUCHPAD.Pressed, "PAD"))
 // 		fmt.Println()
+
+// 		// Row 2.5: Motion Sensors
+// 		fmt.Println(" MOTION SENSORS (GYRO / ACCELEROMETER):")
+// 		fmt.Printf(" Gyro Velocity ->  X: %6.2f, Y: %6.2f, Z: %6.2f\n", controller.Motion.GyroX, controller.Motion.GyroY, controller.Motion.GyroZ)
+// 		fmt.Printf(" Accel Gravity ->  X: %6.2f, Y: %6.2f, Z: %6.2f\n", controller.Motion.AccelX, controller.Motion.AccelY, controller.Motion.AccelZ)
+// 		fmt.Println("--------------------------------------------------")
+// 		fmt.Printf(" Calculated Steering (Roll Tilt):  %6.2f°\n", controller.Motion.Roll)
+// 		fmt.Println("==================================================")
 
 // 		// Row 3: D-Pad & Face Buttons
 // 		fmt.Printf(" D-PAD:            FACE BUTTONS:\n")
