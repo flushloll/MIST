@@ -42,6 +42,8 @@ R3:
 L3:
 - forward-backward: up-down (controlled from the servos on knees)
 - right/left: turning (forward legs turn up to 30 degrees right/left, like in a car)
+Emergent:
+- tilt of the robot is calculated from the MIST's accelerometer readings
 (Gemini wrote a simulation from which my brother and I have tested the controls, and it seems to be perfect!)
 
 ## Knee structure:
@@ -49,3 +51,12 @@ The L-chape connects to a cylindrical main rice-cooker body, and it connects as 
 The close one is the one near the body and faris the further out.
 It is in a serial arm style.
 I am unsure on the angle right now, let's assume it is at 90 degrees when its straight (everything is horizontal so we get a shape like -[]-[]-| and it can go like 90 degrees on each direction? (let's define the limits as constants in the beginning of the file, so we can calibrate it later, so: rest point, max and min.)
+
+## Hand module (ToDo)
+Still unsure, need to hear back from William, but I hypothesize this:
+The arm has 4 servos:
+- 1 inside of the arm, rotating it forward and backward.
+- 1 horizontally in the same plane as the one inside, but rotating right and left (left-down and up-right to be concise)
+- 3 in the joints for forward-backward movement
+- 1 motor to pinch the claw
+I will for now ignore the hand module, working on everythign else in assembling the body.

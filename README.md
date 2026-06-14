@@ -131,6 +131,7 @@ rsync -avz /path/to/local/dir/ username@remote_ip:/path/to/remote/dir/
 
 ### State of Repository
 #### mist-os
+If there is extra time to spend, creating a custom font for cancy-<character> eye type for the screen module would be worth it.
 #### simulations
 #### wiring
 for William:
