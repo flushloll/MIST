@@ -1,0 +1,5 @@
+mist-os/ram/
+.env
+CAD/playground
+simulations/
+*.DS_Store
