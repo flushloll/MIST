@@ -43,3 +43,9 @@ L3:
 - forward-backward: up-down (controlled from the servos on knees)
 - right/left: turning (forward legs turn up to 30 degrees right/left, like in a car)
 (Gemini wrote a simulation from which my brother and I have tested the controls, and it seems to be perfect!)
+
+## Knee structure:
+The L-chape connects to a cylindrical main rice-cooker body, and it connects as described. (The last multiple links is just the chape of the last joint.) TLDR: we have: [body]-[servo]-[short segment]-[servo]-[line and then vertical segment, like reverse L, with the wheel on the bottom]
+The close one is the one near the body and faris the further out.
+It is in a serial arm style.
+I am unsure on the angle right now, let's assume it is at 90 degrees when its straight (everything is horizontal so we get a shape like -[]-[]-| and it can go like 90 degrees on each direction? (let's define the limits as constants in the beginning of the file, so we can calibrate it later, so: rest point, max and min.)
