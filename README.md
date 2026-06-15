@@ -120,7 +120,7 @@ Remember to assemble the electronics and hardware as you go through this order. 
 
 <h3><a href="assets/BOM.pdf">BOM Interactable PDF</a></h3>
 
-here BOM in CSV
+<h3><a href="assets/BOM.csv">BOM CSV</a></h3>
 
 #### 2. Electronics Wiring Guide
 
