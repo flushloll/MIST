@@ -121,6 +121,11 @@ Remember to assemble the electronics and hardware as you go through this order. 
 here BOM in CSV
 
 #### 2. Electronics Wiring Guide
+
+Here are the schematics for wiring MIST. When actually wiring MIST physically, consider where you place your wires and ensure no wires will be pinched or sliced. Use mounting tape to secure your wires onto MIST's chassis and use electrical tape and shrink tubing to cover exposed wires.
+
+If you have questions on how to perform certain electrical tasks such as soldering, crimping, using shrink tube & electrical tape, cutting wire, and just splicing wire in general then please research how to do so before working on MIST. MIST can produce currents capable of setting fire or frying electronics. If you are unsure of how to manage these currents through programming then it would be a good idea to integrate physical fuses in between electronics to prevent accidents. When deciding on where fuses can be integrated in your circuit consider the maximum current passing through a segment and use that number to decide on the current limit of your fuse. [Here's a good starting point on how to get started with fuses:](https://community.element14.com/technologies/experts/w/documents/27978/a-comprehensive-guide-to-fuses)
+
 ![Circuit Guide](assets/Circuit_Guide.png)
 
 #### 4. Enable I2C & Components Test
