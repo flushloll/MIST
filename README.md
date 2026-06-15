@@ -100,7 +100,7 @@ For the context, MIST is originally modelled in CTC Creo in imperial units.
 !TODO: Insert BOM from Google Sheets
 
 #### 2. Electronics Wiring Guide
-![](assets/Circuit Guide.png)
+![Circuit Guide](assets/Circuit_Guide.png)
 
 #### 4. Enable I2C & Components Test
 ```zsh
