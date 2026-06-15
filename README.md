@@ -143,7 +143,7 @@ sudo i2cdetect -y 1
 # ____ is PCA9685
 ```
 
-## Contribute
+# Contribute
 ### Realtime file sync between devices
 In order to sync files between devices in real-time:
 ```bash
@@ -158,7 +158,7 @@ The servo controlling lateral movement of the arm should be reinforced in future
 ### Joint improvements
 Additional revisions of the joints could likely be made using DC motors with encoders rather than servos to use space more efficiently and result in a more accurate replica of MIST from Pantheon.
 
-## Budget Improvements
+### Budget Improvements
 MIST could be made cheaper overall by reducing the amount of motors/materials used overall. This solution is over-engineered to an extent.
 
 # Math
