@@ -118,7 +118,7 @@ Remember to assemble the electronics and hardware as you go through this order. 
 
 #### 1. BOM - Bill of Materials
 
-<h2>[BOM](assets/BOM.pdf)</h2>
+<h2><a href="assets/BOM.pdf">BOM</a></h2>
 here BOM in CSV
 
 #### 2. Electronics Wiring Guide
