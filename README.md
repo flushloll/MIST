@@ -235,4 +235,5 @@ Following the same gear ratio calculation as above our gear ratio on our smaller
 # Fallout Journal
 
 [Check out our fallout journal :D](https://fallout.hackclub.com/projects/2463)
+
 ![Fallout_Journal](assets/mist-journal_current.md)
