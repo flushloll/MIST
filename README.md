@@ -143,23 +143,96 @@ sudo i2cdetect -y 1
 # ____ is PCA9685
 ```
 
-5. Math
-
-## Contribute
-### Realtime file sync between devices
+### Contribute
+## Realtime file sync between devices
 In order to sync files between devices in real-time:
 ```bash
 rsync -avz /path/to/local/dir/ username@remote_ip:/path/to/remote/dir/
 ```
-### Fancy-<character> eye
+## Fancy-<character> eye
 If there is extra time to spend, creating a custom font for fancy-<character> eye type for the screen module would be worth it.
 
-### Questionable arm design?
+## Questionable arm design?
 The servo controlling lateral movement of the arm should be reinforced in future iterations, with both a more powerful servo and thicker bungee cord. With ultra-lightweight printing the current version works hypothetically but it's questionable.
 
-### Joint improvements
+## Joint improvements
 Additional revisions of the joints could likely be made using DC motors with encoders rather than servos to use space more efficiently and result in a more accurate replica of MIST from Pantheon.
 
-### Budget Improvements
+## Budget Improvements
 MIST could be made cheaper overall by reducing the amount of motors/materials used overall. This solution is over-engineered to an extent.
 
+## Math
+
+## Servo quantity and strength
+
+# • How many servos do we need and how strong do they need to be to support the robot?
+
+The robot is being supported by four legs. We can distribute the load between these 4 legs.
+
+If we modestly assume our robot is 7 KG in weight, then each leg should be able to comfortably support 1.75 KG of weight. As such, the stall torque of the motor maintaining the position of each leg should be 4X that so that we are consistently operating at around 33% of each motor’s stall torque.
+
+So, the motors for each leg should be rated for 5.25 KG of weight.
+
+Then, assuming the length of the lever is 18 CM (so each leg is 18 CM long), the motor should (optimally) be rated for [94.25 KG/xCM] so that at 18 CM we can achieve this physical state and be able to support 5.25 KG at the longest point of lever (so the end of the leg)
+
+If we assume this load can be distributed between the eight joints in the robot (2 joints in each of the 4 legs), each motor should be able to support at least 11.78125 kg/cm.
+
+## DC motor quantity and strength
+
+# • How many DC motors do we need and how strong do they need to be to continuously accelerate the robot until an acceptable speed?
+
+Coefficient of friction: ~0.6 (SEBS TPE against asphalt)
+Normal force = (7kg * gravity)/4 = 17.1675 N (mg/4)
+
+Frictional force = coefficient of friction * normal force
+Frictional force = (0.6 * 17.1675 N) = 10.3005 N
+
+Divided by 4 as load is shared between each wheel
+
+P = F * v
+260W = 10.3005 N * 25.24 m/s (minimum to gain traction and overcome stalling force against asphalt at motor maximum power draw)
+
+2 inch diameter wheels
+
+![Angular Velocity Diagram](assets/Angular_Velocity_Diagram.png)
+
+Moment of frictional force = perpendicular distance (lever length) * frictional force (10.3005 N)
+
+In this case the perpendicular distance is just the radius of the wheel at 1 inch, so moment of frictional force
+(otherwise known as torque) is equal to: 10.3005 N * 1 in.
+
+Which is equal to 10.3005 N * 0.0254 meters, and thus our torque required to begin accelerating on
+asphalt is 0.261 newton metres.
+
+Now to calculate angular velocity at this theoretical minimum torque + maximum speed combo
+angular velocity = velocity/radius = (25.24 m/s)/(0.0254 m) = 993.7 radians per second
+
+To a more standard motor format, that is 9,489.14 RPM.
+
+Now that we know both the theoretical minimum torque and theoretical maximum speed possible at our power output (260 watts).
+we can determine the gear ratio we’d use for our amount of force.
+
+[Selected Motor](https://www.flashhobby.com/d2822-fixed-wing-motor.html)
+![Motor_Image](assets/motor_picture.jpg)
+![Motor_KV](assets/motor_kv.png)
+
+2600kV * 12v = 312000 RPM
+
+With our given motor RPM immediately off the shelf (31200 RPM) and our theoretical maximum speed possible (9489 RPM) we know
+that we must use a 3.288:1 gear reduction to even begin accelerating. Accounting for energy transmission inefficiencies (3.29/0.90)
+that increases to 3.66:1 and accounting for the fact that the motor will never always be running at it’s maximum power draw, and will
+be running more often than not at ~80% efficiency, we must 3.66/0.8, giving us 4.575:1.
+
+At this ratio, our 31200 RPM becomes 6819.67213115 RPM.
+
+When calculating the surface area speed of our wheels, we learn that our robot can move at a theoretical top speed of 18.14 m/s
+Or, in other units: 65.304 km/h at 832 watts
+
+With our smaller diameter wheels (1.416 inches), we must calculate the new angular velocity (25.24/0.018 m) = 1403.53 rad/s = 13,402.75 rpm
+
+Following the same gear ratio calculation as above our gear ratio on our smaller wheels will be 3.23:1
+
+### Fallout Journal
+
+[Check out our fallout journal :D](https://fallout.hackclub.com/projects/2463)
+![Fallout_Journal](assets/mist-journal_current.md)
