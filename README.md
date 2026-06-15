@@ -128,7 +128,7 @@ If you have questions on how to perform certain electrical tasks such as solderi
 
 ![Circuit Guide](assets/Circuit_Guide.png)
 
-#### 4. Enable I2C & Components Test
+#### 3. Enable I2C & Components Test
 ```zsh
 # Open the configuration menu:
 dietpi-config
@@ -143,29 +143,29 @@ sudo i2cdetect -y 1
 # ____ is PCA9685
 ```
 
-### Contribute
-## Realtime file sync between devices
+## Contribute
+### Realtime file sync between devices
 In order to sync files between devices in real-time:
 ```bash
 rsync -avz /path/to/local/dir/ username@remote_ip:/path/to/remote/dir/
 ```
-## Fancy-<character> eye
+### Fancy-<character> eye
 If there is extra time to spend, creating a custom font for fancy-<character> eye type for the screen module would be worth it.
 
-## Questionable arm design?
+### Questionable arm design?
 The servo controlling lateral movement of the arm should be reinforced in future iterations, with both a more powerful servo and thicker bungee cord. With ultra-lightweight printing the current version works hypothetically but it's questionable.
 
-## Joint improvements
+### Joint improvements
 Additional revisions of the joints could likely be made using DC motors with encoders rather than servos to use space more efficiently and result in a more accurate replica of MIST from Pantheon.
 
 ## Budget Improvements
 MIST could be made cheaper overall by reducing the amount of motors/materials used overall. This solution is over-engineered to an extent.
 
-## Math
+# Math
 
 ## Servo quantity and strength
 
-# • How many servos do we need and how strong do they need to be to support the robot?
+### • How many servos do we need and how strong do they need to be to support the robot?
 
 The robot is being supported by four legs. We can distribute the load between these 4 legs.
 
@@ -179,7 +179,7 @@ If we assume this load can be distributed between the eight joints in the robot 
 
 ## DC motor quantity and strength
 
-# • How many DC motors do we need and how strong do they need to be to continuously accelerate the robot until an acceptable speed?
+### • How many DC motors do we need and how strong do they need to be to continuously accelerate the robot until an acceptable speed?
 
 Coefficient of friction: ~0.6 (SEBS TPE against asphalt)
 Normal force = (7kg * gravity)/4 = 17.1675 N (mg/4)
@@ -232,7 +232,7 @@ With our smaller diameter wheels (1.416 inches), we must calculate the new angul
 
 Following the same gear ratio calculation as above our gear ratio on our smaller wheels will be 3.23:1
 
-### Fallout Journal
+# Fallout Journal
 
 [Check out our fallout journal :D](https://fallout.hackclub.com/projects/2463)
 ![Fallout_Journal](assets/mist-journal_current.md)
