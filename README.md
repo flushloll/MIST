@@ -1,7 +1,7 @@
 # MIST
 MIST is a robot in the form of a rice-cooker with legs, originating from the Pantheon Show. Our goal in this project was to test our skills whilst making something beautiful. 
 
-![CAD Model](assets/dc4bebfd2665ba8eb09146e643a19c9611d8cfe4fb39f6bc9c8c37b82709efe4.png)
+![CAD Model](assets/V3.png)
 
 ## Replication
 All of the instructions on recreating the robot are provided below.
@@ -100,7 +100,7 @@ For the context, MIST is originally modelled in CTC Creo in imperial units.
 !TODO: Insert BOM from Google Sheets
 
 #### 2. Electronics Wiring Guide
-![](assets/cf93e6d5dc4156bd0e512205f6ad03fc0436a38a9b7ac233e9a3aa5704771bca.png)
+![](assets/Circuit_Guide.png)
 
 #### 4. Enable I2C & Components Test
 ```zsh
