@@ -15,8 +15,8 @@ type SpeechCurveMouth struct {
 
 func (m *SpeechCurveMouth) Draw(img *image.RGBA) {
 	w := int(float64(m.Width) * m.Scale)
-	// A wide open speech curve facing up
-	face.DrawArc(img, m.Position, w/2, m.LineWidth, m.Rotation - math.Pi/2, 3.14, m.Color)
+	// A wide shallower speech curve facing up
+	face.DrawArc(img, m.Position, w/2, m.LineWidth, m.Rotation - math.Pi/2, 4.0, m.Color)
 }
 
 func (m *SpeechCurveMouth) IsClosed() bool { return false }

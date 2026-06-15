@@ -26,10 +26,11 @@ type Screen struct {
 	EyeSpacing int
 	EyeY       int
 	MouthY     int
-	Radius     int
-	LineWidth  int
-	MouthW     int
-	MouthH     int
+	MouthYOffset int
+	Radius       int
+	LineWidth    int
+	MouthW       int
+	MouthH       int
 
 	Mode      string
 	startTime time.Time
@@ -53,7 +54,7 @@ func NewScreen(w, h int) *Screen {
 	c := color.RGBA{0, 255, 255, 255}
 	sc := &Screen{
 		surface: s, Width: w, Height: h, Color: c,
-		EyeSpacing: 350, EyeY: 205, MouthY: 395,
+		EyeSpacing: 350, EyeY: 205, MouthY: 395, MouthYOffset: 0,
 		Radius: 75, LineWidth: 18, MouthW: 165, MouthH: 20,
 		Mode:         "neutral",
 		currentEyes:  "idle",
@@ -159,8 +160,14 @@ func (s *Screen) NewMouth(style string) {
 }
 
 func (s *Screen) applyMouthStyle(style string) {
+	s.MouthYOffset = 0
+	switch style {
+	case "soft", "cutie", "speech-happy", "speech-curve", "three-dot", "speech", "speech-nerdy":
+		s.MouthYOffset = -40
+	}
+
 	base := face.BaseFeature{
-		Position: image.Pt(s.Width/2, s.MouthY), AnchorPosition: image.Pt(s.Width/2, s.MouthY), TargetPosition: image.Pt(s.Width/2, s.MouthY),
+		Position: image.Pt(s.Width/2, s.MouthY+s.MouthYOffset), AnchorPosition: image.Pt(s.Width/2, s.MouthY+s.MouthYOffset), TargetPosition: image.Pt(s.Width/2, s.MouthY+s.MouthYOffset),
 		Scale: 1.0, TargetScale: 1.0, Rotation: 0, TargetRotation: 0,
 		LineWidth: s.LineWidth, TargetLineWidth: s.LineWidth, Color: s.Color, TargetColor: s.Color, TransitionRate: 0.15,
 	}
@@ -172,16 +179,16 @@ func (s *Screen) applyMouthStyle(style string) {
 	switch style {
 	case "speech":
 		base.Rotation, base.TargetRotation = 0, 0
-		width := 150
-		height := 55
+		width := 130
+		height := 65
 		s.Face.Mouth = &mouths.SpeechMouth{
 			BaseFeature: base, Width: width, Height: height,
 			TargetWidth: width, TargetHeight: height,
 		}
 	case "speech-nerdy":
 		base.Rotation, base.TargetRotation = 0, 0
-		width := 77
-		height := 110
+		width := 100
+		height := 60
 		s.Face.Mouth = &mouths.SpeechNerdyMouth{
 			BaseFeature: base, Width: width, Height: height,
 			TargetWidth: width, TargetHeight: height,
@@ -202,11 +209,16 @@ func (s *Screen) applyMouthStyle(style string) {
 	case "dot":
 		s.Face.Mouth = &mouths.DotMouth{BaseFeature: base, Radius: 15, TargetRadius: 15}
 	case "three-dot":
-		s.Face.Mouth = &mouths.ThreeDotMouth{BaseFeature: base, Radius: 10, Spacing: 45, TargetRadius: 10, TargetSpacing: 45}
+		s.Face.Mouth = &mouths.ThreeDotMouth{BaseFeature: base, Radius: 15, Spacing: 60, TargetRadius: 15, TargetSpacing: 60}
 	case "speech-curve":
 		s.Face.Mouth = &mouths.SpeechCurveMouth{BaseFeature: base, Width: s.MouthW, TargetWidth: s.MouthW}
 	case "speech-happy":
-		s.Face.Mouth = &mouths.SpeechHappyMouth{BaseFeature: base, Width: s.MouthW, TargetWidth: s.MouthW}
+		width := s.MouthW
+		height := 45
+		s.Face.Mouth = &mouths.SpeechHappyMouth{
+			BaseFeature: base, Width: width, Height: height,
+			TargetWidth: width, TargetHeight: height,
+		}
 	case "speech-sad":
 		s.Face.Mouth = &mouths.SpeechSadMouth{BaseFeature: base, Width: s.MouthW, TargetWidth: s.MouthW}
 	default:
@@ -296,7 +308,7 @@ func (s *Screen) Update(dt float64) {
 	lx, rx := s.Width/2-s.EyeSpacing/2, s.Width/2+s.EyeSpacing/2
 	s.syncFeature(s.Face.LeftEye, lx, s.EyeY, s.Radius)
 	s.syncFeature(s.Face.RightEye, rx, s.EyeY, s.Radius)
-	s.syncFeature(s.Face.Mouth, s.Width/2, s.MouthY, 0)
+	s.syncFeature(s.Face.Mouth, s.Width/2, s.MouthY+s.MouthYOffset, 0)
 
 	s.Face.Update(dt)
 	s.dirty = true

@@ -1,4 +1,4 @@
-# MIST (WIP)
+# MIST
 MIST is a robot in the form of a rice-cooker with legs, originating from the Pantheon Show. Our goal in this project was to test our skills whilst making something beautiful. 
 
 ![CAD Model](assets/1a34522628508fb483fb3f8e6fba3728600a4098bd7a64154f42e42f2a68b1a8.png)
@@ -53,14 +53,14 @@ apt update
 sudo apt install espeak-ng -y
 ```
 
-#### 6. Setting up ollama
+#### 6. Setting up ollama (embeddinggemma)
 ```bash
 # Install Ollama
 sudo apt-get install zstd
 curl -fsSL https://ollama.com/install.sh | sh
 
 # Get the model
-ollama pull qwen3.5:0.8b
+ollama pull embeddinggemma
 ```
 
 #### 7. Setting up mist-os
@@ -78,8 +78,8 @@ Ctrl + C
 
 Optional: If you wish to start mist-os after boot automatically:
 ```bash
-# Find where matetra-os is installed:
-which matetra-client
+# Find where mist-os is installed:
+which mist-os
 # > Please remember the path or save it to clipboard
 
 # Open Configuration menu:
@@ -99,10 +99,7 @@ For the context, MIST is originally modelled in CTC Creo in imperial units.
 #### 1. BOM - Bill of Materials
 !TODO: Insert BOM from Google Sheets
 
-#### 2. Build Guide
-!TODO: Create LEGO-styled build guide? (would be cool but optional)
-
-#### 3. Electronics Wiring Guide
+#### 2. Electronics Wiring Guide
 !TODO: Insert wiring guide from Figma
 
 #### 4. Enable I2C & Components Test
@@ -120,23 +117,11 @@ sudo i2cdetect -y 1
 # ____ is PCA9685
 ```
 
-#### 5. Next thing
-
 ## Contribute
 ### Realtime file sync between devices
 In order to sync files between devices in real-time:
 ```bash
 rsync -avz /path/to/local/dir/ username@remote_ip:/path/to/remote/dir/
 ```
-
-### State of Repository
-#### mist-os
-If there is extra time to spend, creating a custom font for cancy-<character> eye type for the screen module would be worth it.
-#### simulations
-#### wiring
-for William:
-- I have finilised the power distribution for the project,
-- I vaguely grasped concept for common ground, did I understand it correctly? Could you please check that as well?
-for Esia:
-- I couldn't get US aliexpress working while Amazon's options and price wasn't good; could you please pick the correct Buck Converters and power distribution boards and batteries?
-#### CAD
+### Fancy-<character> eye
+If there is extra time to spend, creating a custom font for fancy-<character> eye type for the screen module would be worth it.

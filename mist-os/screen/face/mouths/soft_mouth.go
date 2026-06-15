@@ -15,9 +15,9 @@ type SoftMouth struct {
 
 func (m *SoftMouth) Draw(img *image.RGBA) {
 	w := int(float64(m.Width) * m.Scale)
-	// Rotation directed to the top (-Pi/2) with a larger gap (4.7 radians)
-	// so only a gentle bottom arc is drawn, forming a natural smile (U)
-	face.DrawArc(img, m.Position, w/2, m.LineWidth, m.Rotation - math.Pi/2, 4.7, m.Color)
+	// Rotation directed to the top (-Pi/2) with a gap of Pi
+	// draws a full semi-circle (U)
+	face.DrawArc(img, m.Position, w/2, m.LineWidth, m.Rotation - math.Pi/2, math.Pi, m.Color)
 }
 
 func (m *SoftMouth) IsClosed() bool { return false }

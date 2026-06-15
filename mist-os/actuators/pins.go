@@ -3,9 +3,10 @@ package actuators
 const (
 	CHANNEL_HEAD_SERVO = 0
 
-	CHANNEL_HAND_1 = 1
-	CHANNEL_HAND_2 = 2
-	CHANNEL_HAND_3 = 3
+	CHANNEL_HIP_RIGHT = 1
+	CHANNEL_HIP_LEFT  = 2
+
+	/// Channel 3 is free for now
 
 	// last F: Far, C: Close
 	CHANNEL_KNEE_SERVO_FRF = 4
@@ -22,6 +23,8 @@ const (
 	CHANNEL_WHEEL_BR = 14
 	CHANNEL_WHEEL_BL = 15
 
-	CHANNEL_HIP_RIGHT = 16
-	CHANNEL_HIP_LEFT  = 17
+	// Hand module is yet not implemented
+	// CHANNEL_HAND_1 =
+	// CHANNEL_HAND_2 =
+	// CHANNEL_HAND_3 =
 )

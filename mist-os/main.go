@@ -1,9 +1,17 @@
 package main
 
 import (
-	"fmt"
+	"mist-os/screen"
 )
 
 func main() {
-	fmt.Println("i'm mist")
+	sc := screen.NewScreen(800, 480)
+	if sc == nil {
+		return
+	}
+	defer sc.Close()
+
+	sc.StartLoading(0, 1)
+	sc.SetFace("idle", "silent")
+	sc.Run()
 }

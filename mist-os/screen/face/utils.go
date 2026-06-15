@@ -75,7 +75,7 @@ func DrawTTFChar(img *image.RGBA, center image.Point, char string, angle float64
 	halfW := float64(maxX-minX)/2.0 + 2.0
 	halfH := float64(maxY-minY)/2.0 + 2.0
 	radius := int(math.Sqrt(halfW*halfW+halfH*halfH)) + 4
-	cosA, sinA := math.Sincos(-angle)
+	sinA, cosA := math.Sincos(-angle)
 
 	for ty := -radius; ty <= radius; ty++ {
 		for tx := -radius; tx <= radius; tx++ {
@@ -175,7 +175,7 @@ func DrawArc(img *image.RGBA, center image.Point, radius int, thickness int, rot
 }
 
 func DrawEllipticalArc(img *image.RGBA, center image.Point, rx, ry int, thickness int, rotation float64, gap float64, c color.Color) {
-	cosR, sinR := math.Sincos(rotation)
+	sinR, cosR := math.Sincos(rotation)
 	bx, by := int(math.Max(float64(rx), float64(ry)))+thickness, int(math.Max(float64(rx), float64(ry)))+thickness
 
 	for y := -by; y <= by; y++ {
@@ -205,7 +205,7 @@ func DrawCross(img *image.RGBA, center image.Point, size int, thickness int, rot
 }
 
 func DrawRoundedRotatedRect(img *image.RGBA, center image.Point, w, h int, angle float64, r1, r2, r3, r4 float64, c color.Color) {
-	cosA, sinA := math.Sincos(angle)
+	sinA, cosA := math.Sincos(angle)
 	halfW, halfH := float64(w)/2.0, float64(h)/2.0
 	maxR := math.Min(halfW, halfH)
 
@@ -321,7 +321,7 @@ func DrawChar(img *image.RGBA, center image.Point, char string, scale float64, a
 	d.Dot = fixed.P(0, 10)
 	d.DrawString(char)
 
-	cosA, sinA := math.Sincos(angle)
+	sinA, cosA := math.Sincos(angle)
 	s := int(scale)
 	if s < 1 {
 		s = 1

@@ -2,7 +2,6 @@ package mouths
 
 import (
 	"image"
-	"math"
 
 	"mist-os/screen/face"
 )
@@ -19,11 +18,10 @@ func (m *SpeechNerdyMouth) Draw(img *image.RGBA) {
 	w := int(float64(m.Width) * m.Scale)
 	h := int(float64(m.Height) * m.Scale)
 
-	maxR := math.Min(float64(w), float64(h)) / 2.0
-	r1 := 1.0 * maxR
-	r2 := 1.0 * maxR
-	r3 := 0.33 * maxR
-	r4 := 0.33 * maxR
+	r1 := 0.0
+	r2 := 0.0
+	r3 := 0.5
+	r4 := 0.5
 
 	face.DrawRoundedRotatedRect(img, m.Position, w, h, m.Rotation, r1, r2, r3, r4, m.Color)
 }

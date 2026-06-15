@@ -37,5 +37,13 @@ func main() {
 ```
 
 # TODO
-- Fix many of the mouth styles (many are ugly or too low)
-- Make so in SetFace, eyes and mouths change simultaneously.
+All of the eyes are great! Some of the mouses are great! But rest are sort of ugly... Here is breakdown of what's ugly:
+- speech -> ugly, 
+- speech-nerdy -> ugly
+- soft -> must be higher
+- cutie -> must be higher
+- speech-happy -> ugly & low
+- speech-curve -> same as speech happy, why exists?
+- three-dot -> too small & low
+general feedback: speech modules are supposed to be like the mouth here: :D but filled. The soft modules are very similar but are more like :) but the buttom part of the shape curves like D but without a vertical line. 
+Should I just design it all as svg's and we should just import them rather than draw it all in go?
