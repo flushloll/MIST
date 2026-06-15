@@ -1,7 +1,7 @@
 # MIST
 MIST is a robot in the form of a rice-cooker with legs, originating from the Pantheon Show. Our goal in this project was to test our skills whilst making something beautiful. 
 
-![CAD Model](assets/V3.png)
+![CAD Model](assets/V3_.png)
 
 ## Replication
 All of the instructions on recreating the robot are provided below.
