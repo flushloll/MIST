@@ -116,9 +116,10 @@ Remember to assemble the electronics and hardware as you go through this order. 
 ![Model](assets/Model.png)
 ![Naked Model](assets/Naked_Model.png)
 
-#### 1. BOM - Bill of Materials
+## 1. BOM - Bill of Materials
 
-<h2><a href="assets/BOM.pdf">BOM</a></h2>
+<h3><a href="assets/BOM.pdf">BOM</a></h3>
+
 here BOM in CSV
 
 #### 2. Electronics Wiring Guide
