@@ -95,9 +95,30 @@ exit 0
 ```
 
 ### Hardware
-For the context, MIST is originally modelled in CTC Creo in imperial units.
+
+I would suggest assembling the robot by virtue of the subassemblies in the CAD, starting with the smallest and working up to the largest.
+
+An order like this is good:
+1. Chunky-Leg
+2. Chunky-Leg-2
+3. Skinny-Leg
+4. Skinny-Leg-2
+5. Rice-Cooker-Lower
+6. Rice-Cooker-Center
+7. Rice-Cooker-Lid
+8. Arm
+
+Keep in mind that if a part is not on the BOM then it is a 3D printed part.
+Every 3D printed part is printed in PLA except the nylon_heat_brick part which is printed in nylon filament as well as the small_sleeve_1, small_sleeve_2, big_sleeve_1, and big_sleeve_2 parts which are printed in SEBS filament.
+
+Remember to assemble the electronics and hardware as you go through this order. Everything you need to know to assemble MIST succesfully is on the CAD model.
+
+![Model](assets/Model.png)
+![Naked Model](assets/Naked_Model.png)
+
 #### 1. BOM - Bill of Materials
-!TODO: Insert BOM from Google Sheets
+
+here BOM in CSV
 
 #### 2. Electronics Wiring Guide
 ![Circuit Guide](assets/Circuit_Guide.png)
@@ -117,6 +138,8 @@ sudo i2cdetect -y 1
 # ____ is PCA9685
 ```
 
+5. Math
+
 ## Contribute
 ### Realtime file sync between devices
 In order to sync files between devices in real-time:
@@ -125,3 +148,13 @@ rsync -avz /path/to/local/dir/ username@remote_ip:/path/to/remote/dir/
 ```
 ### Fancy-<character> eye
 If there is extra time to spend, creating a custom font for fancy-<character> eye type for the screen module would be worth it.
+
+### Questionable arm design?
+The servo controlling lateral movement of the arm should be reinforced in future iterations, with both a more powerful servo and thicker bungee cord. With ultra-lightweight printing the current version works hypothetically but it's questionable.
+
+### Joint improvements
+Additional revisions of the joints could likely be made using DC motors with encoders rather than servos to use space more efficiently and result in a more accurate replica of MIST from Pantheon.
+
+### Budget Improvements
+MIST could be made cheaper overall by reducing the amount of motors/materials used overall. This solution is over-engineered to an extent.
+
