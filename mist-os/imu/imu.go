@@ -109,7 +109,7 @@ func (imu *IMU) Read() (Reading, error) {
 
 func (imu *IMU) Latest() Reading {
 	imu.mu.RLock()
-	defer imu.mu.Unlock()
+	defer imu.mu.RUnlock()
 	return imu.latest
 }
 

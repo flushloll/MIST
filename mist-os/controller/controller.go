@@ -55,6 +55,8 @@ type Controller struct {
 	sdlID          sdl.JoystickID
 	gameController *sdl.GameController
 
+	Quit bool
+
 	LEFT, RIGHT, UP, DOWN           Button
 	SQUARE, CIRCLE, TRIANGLE, CROSS Button
 	L1, R1, L3, R3                  Button
@@ -207,6 +209,9 @@ func (c *Controller) Update() {
 				c.Motion.GyroY = t.Data[1]
 				c.Motion.GyroZ = t.Data[2]
 			}
+
+		case sdl.QuitEvent:
+			c.Quit = true
 		}
 	}
 }

@@ -25,7 +25,7 @@ func (m *Motor) SetThrottle(throttle float64) error {
 		throttle = 1
 	}
 	mid := (escMin + escMax) / 2
-	pulseUs := escMin + int(throttle*float64(escMax-mid))
+	pulseUs := mid + int(throttle*float64(escMax-mid))
 	tick := usToTick(pulseUs)
 	return m.driver.SetPWM(m.channel, 0, uint16(tick))
 }

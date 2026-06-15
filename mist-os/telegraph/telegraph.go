@@ -18,14 +18,16 @@ var morseAlphabet = map[string]string{
 const (
 	DotMaxDuration = 200 * time.Millisecond
 	LetterTimeout  = 600 * time.Millisecond
+	WordTimeout    = 1500 * time.Millisecond
 )
 
 type Telegraph struct {
-	signal    *controller.Button
-	lastState bool
-	sequence  string
-	lastLift  time.Time
-	buffer    string
+	signal     *controller.Button
+	lastState  bool
+	sequence   string
+	lastLift   time.Time
+	lastLetter time.Time
+	buffer     string
 }
 
 func NewTelegraph(button *controller.Button) *Telegraph {
@@ -48,9 +50,21 @@ func (t *Telegraph) Tick() {
 		if letter, ok := morseAlphabet[t.sequence]; ok {
 			t.buffer += letter
 			fmt.Println(t.buffer)
+			t.lastLetter = time.Now()
 		}
 		t.sequence = ""
 	}
+}
+
+func (t *Telegraph) Ready() bool {
+	return t.buffer != "" && !t.signal.Pressed && t.sequence == "" &&
+		time.Since(t.lastLetter) > WordTimeout
+}
+
+func (t *Telegraph) Drain() string {
+	cmd := t.buffer
+	t.buffer = ""
+	return cmd
 }
 
 // A playful function for testing
