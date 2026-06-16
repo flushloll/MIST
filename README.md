@@ -148,12 +148,13 @@ sudo i2cdetect -y 1
 ```
 
 # Contribute
+![](assets/attack.png)
 ### Realtime file sync between devices
 In order to sync files between devices in real-time:
 ```bash
 rsync -avz /path/to/local/dir/ username@remote_ip:/path/to/remote/dir/
 ```
-### Fancy-<character> eye
+### Fancy eye
 If there is extra time to spend, creating a custom font for fancy-<character> eye type for the screen module would be worth it.
 
 ### Questionable arm design?
