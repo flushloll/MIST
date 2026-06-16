@@ -1,10 +1,10 @@
 ,,All in USD,,,,
 ,Count,Cost Per Unit,Total Cost (before taxes & shipping),Name,Link,Notes
-ELECTRONICS,10,12.1,121,TowerPro Servo Motor MG996R 180,https://thepihut.com/products/towerpro-servo-motor-mg996r-metal-gear-180,Servos used in knee and hip joints.
-,1,110,110,Raspberry Pi 5 (4GB Ram),https://www.pishop.us/product/raspberry-pi-5-4gb/?src=raspberrypi,Main computer of MIST.
-,4,20,80,D2822 Fixed Wing Motor,https://www.amazon.com/D2822-Fixed-Wing-MultiCopter-Quadcopter-Multi-axis/dp/B0D3DYJSSL/,The motors powering forward acceleration.
+ELECTRONICS,10,3.16,31.6,TowerPro Servo Motor MG996R 180,https://hacktronics.co/product/mg996r-torque-digital-metal-gear-servo-for-model-helicopter-rc-car-boat/,Servos used in knee and hip joints.
+,1,110,110,Raspberry Pi 5 (4GB Ram),https://www.pishop.us/product/raspberry-pi-5-4gb/?src=raspberrypi,Main computer of MIST. Compute allows us to run ollama for autonomous vision system.
+,4,14.99,59.96,D2822 Fixed Wing Motor,https://www.amazon.com/D2822-Fixed-Wing-MultiCopter-Quadcopter-Multi-axis/dp/B0D3DYJSSL/,The motors powering forward acceleration.
 ,1,24.99,24.99,Power Distribution Board 2 (8 connectors),https://www.servocity.com/xt30-power-distribution-board-xt90-input-8-x-xt30-outputs/,PDB necessary to distribute power without having to hotwire every connection.
-,4,12.02,48.08,Bidirectional Brushless ESC,https://www.aliexpress.com/i/3256807944824104.html?gatewayAdapt=4itemAdapt,Motor controller for the D2822 motors powering forward acceleration.
+,4,8.77,35.08,Bidirectional Brushless ESC 30A,https://www.aliexpress.com/i/3256807944824104.html?gatewayAdapt=4itemAdapt,Motor controller for the D2822 motors powering forward acceleration.
 ,1,35,35,Hosyond 5 Inch Touchscreen IPS MIPI DSI Display,https://www.amazon.com/Hosyond-Touchscreen-Compatible-Capacitive-Driver-Free/dp/B0CXTFN8K9/,Mist's screen and face.
 ,1,30,30,Turnigy 5000mAh 3S 30C 11.1V Lipo Battery Pack w/ XT90,https://speedyfpv.com/products/turnigy-5000mah-3s-30c-lipo-pack-w-xt-90?variant=48194865922262,Lipo battery powering all components of MIST. Any 11.1V Lipo battery will work. mAh is just a measurement of how long the battery will last. Higher mAh is equal to longer battery life.
 ,1,16.64,16.64,5MP 1080P Optional Night Vision Wide Angle IR-CUT FF AF Camera,https://www.aliexpress.us/item/3256806603685338.html,Camera used for vision and automation.
@@ -12,10 +12,10 @@ ELECTRONICS,10,12.1,121,TowerPro Servo Motor MG996R 180,https://thepihut.com/pro
 ,1,10,10,2pcs BEC UBEC 5V 5A,https://www.amazon.com/Module-Quadcopter-Airplane-Servo-Model/dp/B0D97FH1JS/,You need 2 UBECs. This offering provides both.
 ,4,2.5,10,TowerPro MG90S Servo Motor,https://www.tinyosshop.com/index.php?route=product/product&product_id=84,Servos used in arm.
 ,1,9.36,9.36,6mm Precision Mini Micro Planetary Reduction Reducer Gear Motor,https://www.amazon.com/Precision-Planetary-Reduction-Consistency-Torsion/dp/B08VRYVYBS/,Compact DC motor that fits and is used in gripper.
-,1,74,74,PS5 Controller,https://www.amazon.com/PlayStation-DualSenseTM-Wireless-Controller-Gaming-Console/dp/B0FY6X2XXY/,"You can choose another controller if you'd like, if it doesn't work upon initialization just ensure you modify the code to make it compatible."
+,1,19.99,19.99,Logitech - F310 Controller,https://www.bestbuy.com/product/logitech-f310-gaming-pad-for-windows-black-blue/J7H7ZLVG2X,"You can choose another controller if you'd like, if it doesn't work upon initialization just ensure you modify the code to make it compatible."
 ,2,4.86,9.72,PCA9685PW,https://www.aliexpress.us/item/3256806112519208.html?,Generic PCA9685 brand. Any other model will work too (including the Adafruit model).
 ,1,3,3,MPU-6050,https://www.adafruit.com/product/3886,Accelerometer used to determine MIST's position and orientation and output back to the Raspberry Pi.
-MATERIALS,1,45.51,45.51,SEBS Filament for wheel sleeves,https://hartsmartproducts.com/products/jabil-tpu95a-sebs-1300,Flexible filament used in wheel covers.
+MATERIALS,1,19.97,19.97,SEBS Filament for wheel sleeves,https://hartsmartproducts.com/products/jabil-tpu95a-sebs-1300,Flexible filament used in wheel covers.
 ,1,19.99,19.99,White PLA Basic Filament (1kg) | Bambu Lab US Store,https://us.store.bambulab.com/products/pla-basic-filament?id=41078274687112,Filament used in parts across MIST.
 ,1,19.99,19.99,Grey PLA Basic (1kg) | Bambu Lab US Store,https://us.store.bambulab.com/products/pla-basic-filament?id=42844628975752,Filament used in parts across MIST.
 ,1,17.72,19.99,Nylon Filament (500g),https://ooznest.co.uk/product/nylon-3d-printer-filament-1-75mm/?attribute_pa_filament-colour=midnight-black&attribute_pa_filament-weight=500g-spool,Filament used in heat-resistant parts of MIST as we cannot mount motors directly to PLA or it will melt.
@@ -48,4 +48,4 @@ TOOLS,1,1,1,10-32 tap (for tapping shafts),https://www.aliexpress.us/item/225580
 ,1,6.77,6.77,Wrench Set,https://www.aliexpress.us/item/3256806596445021.html?,Wrench set necessary to connect mechanical portions across MIST.
 ,1,15.09,15.09,Allen Key Set,https://www.aliexpress.us/item/3256811924676788.html,Allen key set used to tighten and loosen screws in combination with the wrench set.
 ,1,20.41,20.41,"Wire Stripper, Cutter, and Crimper tool",https://www.aliexpress.us/item/3256809687963497.html?,Multifunctional electrical tool used for ensuring proper wire connections.
-,,,962.21,,,
+,,,760.22,,,
