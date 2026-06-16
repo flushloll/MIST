@@ -157,6 +157,9 @@ If there is extra time to spend, creating a custom font for fancy-<character> ey
 ### Questionable arm design?
 The servo controlling lateral movement of the arm should be reinforced in future iterations, with both a more powerful servo and thicker bungee cord. With ultra-lightweight printing the current version works hypothetically but it's questionable.
 
+### Head rotation
+A mechanism to turn the head and rotate the screen around the body as a result would further contribute toward MIST's accuracy to the show and would be an interesting upgrade.
+
 ### Joint improvements
 Additional revisions of the joints could likely be made using DC motors with encoders rather than servos to use space more efficiently and result in a more accurate replica of MIST from Pantheon.
 
