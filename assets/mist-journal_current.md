@@ -1,8 +1,8 @@
 # MIST — Journal Export
 
-- Exported at: 2026-06-15T22:18:43Z
+- Exported at: 2026-06-16T04:41:19Z
 - Project ID: 2463
-- Entries: 71
+- Entries: 81
 
 ## Entry 1
 - ID: 3694
@@ -1488,3 +1488,265 @@ I also made the last iteration of zine!
 ### Recording Links
 
 - https://lookout.hackclub.com/api/media/8088257b-fb5a-4517-8af7-9f07ef3d676d/video.mp4
+
+## Entry 72
+- ID: 14352
+- Author: Esia
+- Created At: 2026-06-16T01:03:07Z
+
+### Content
+
+During this stage, I caught up with Umarbek and we explored different options of cutting down on servos to simplify the project and ensure we'd be on track to get it done.
+
+![Screenshot 2026-06-15 175314.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzQxNjYsInB1ciI6ImJsb2JfaWQifX0=--ad3b5028a14fcec48949d776fff0ab1e2ca82781/Screenshot 2026-06-15 175314.png)
+
+Ultimately, we figured we'd be able to get rid of two motors by removing the hip motors in the back, chunky legs and make them entirely static. This would enable us to package the other hip motors with more freedom and reduce overall design, build, and programming strain across the board.
+
+![image.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzQxNjgsInB1ciI6ImJsb2JfaWQifX0=--b61840f7c33fc54f5278ebb2fa885d556a89e731/image.png)
+
+
+### Recording Links
+
+- https://lookout.hackclub.com/api/media/74dbb1a4-3b24-4c02-a656-a198db114615/video.mp4
+
+## Entry 73
+- ID: 14364
+- Author: Esia
+- Created At: 2026-06-16T02:08:06Z
+
+### Content
+
+Here I took some time to design the hip mechanism for the legs that I had yet to develop. The two legs already developed and mounted were stationary with a bracket that when mounted, positioned them in the neutral position facing directly forward, balanced across the center of the robot. This way, I had eliminated the need to worry about the bias from the weight of the back legs as their weight canceled each other out and they could instead act as a stabilizer for the front, skinny legs.
+
+As such, I had significant freedom in working on the hips and I was able to come up with a coaxial hip design that utilized two servos, each for a hip and a leg.
+
+![image.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzQxOTYsInB1ciI6ImJsb2JfaWQifX0=--185ba5512cf48b447708ecaaf2837aa6e4b5e06f/image.png)
+
+It was relatively difficult to package two different coaxial hips on top of each other with a direct servo connection so I chose to instead position the servos off to the side and belt the servos onto each hip.
+
+Then, I had to make the decision to gear down the servos at a ratio of 27:67, decreasing the servo's range by 40% whilst increasing it's resolution by the same amount. More importantly, we achieved a 40% increase in torque, allowing us to utilize the knee servo model in the hips as well.
+
+![Screenshot 2026-06-15 185518.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzQxOTUsInB1ciI6ImJsb2JfaWQifX0=--dffff586ef122d4a989b9f8560818d7b527d61e6/Screenshot 2026-06-15 185518.png)
+
+With two legs mounted, and the hips for the final two legs developed, I moved onto finishing up the final set of legs and mounting them onto the hips.
+
+### Recording Links
+
+- https://lookout.hackclub.com/api/media/83f1eb65-4454-4505-9236-3945f2565199/video.mp4
+- https://lookout.hackclub.com/api/media/f8b6ff78-c768-4f0a-bdb7-fe616739c9b2/video.mp4
+
+## Entry 74
+- ID: 14369
+- Author: Esia
+- Created At: 2026-06-16T02:24:20Z
+
+### Content
+
+Starting on the third leg, I made a huge mistake in my approach.
+
+Initially, my logic was that I'd make the "skinny" set of legs an entirely scaled down version of the chunky legs. With this, it meant my joints would need to become smaller, and as such I designed a leg entirely for these smaller servos, downsizing the leg by 25% but losing approximately 75% of the torque I had before to rotate the knees going from the MG996r with 11kg/cm of torque to the MG92B with 3.5kg/cm of torque.
+
+![PTC Creo Screenshot 2026.06.15 - 19.13.22.40.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzQyMDQsInB1ciI6ImJsb2JfaWQifX0=--842edbdd0d7e5dfae57f9758ca0a6076e44bbf68/PTC Creo Screenshot 2026.06.15 - 19.13.22.40.png)
+
+After I realized my mistake and that the robot would not function with _weak knees_ I realized my better option would just be to snatch what I already have from the other legs and only redo the final leg segment as it had the most volume that I could take away from and give the illusion that the front set of legs is overall smaller. So, I chose to do that instead.
+
+![PTC Creo Screenshot 2026.06.15 - 19.21.05.14.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzQyMDUsInB1ciI6ImJsb2JfaWQifX0=--413ae5b39e0ded941580e852041847af03ba4cff/PTC Creo Screenshot 2026.06.15 - 19.21.05.14.png)
+
+### Recording Links
+
+- https://lookout.hackclub.com/api/media/390043bf-2996-4aee-858c-d74744e54c56/video.mp4
+
+## Entry 75
+- ID: 14374
+- Author: Esia
+- Created At: 2026-06-16T02:57:09Z
+
+### Content
+
+Here I honestly spent a lot of time jumping between things. I went from designing the last legs to integrating them into the hips and body whilst also editing the model of each leg, gearing down the motors some more and redesigning the wheels to support a layer of flexible SEBs filament in order to not _crack_ upon rough contact or blunt force.
+
+Here's some photos of the stuff I was working on:
+
+Wheel sleeve: 
+![PTC Creo Screenshot 2026.06.15 - 19.39.03.61.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzQyMTAsInB1ciI6ImJsb2JfaWQifX0=--192e3fa71e5117ce7c2a4f77fb21c7df0c451860/PTC Creo Screenshot 2026.06.15 - 19.39.03.61.png)
+
+Trying to figure out how to design tire treads:
+![Desktop Screenshot 2026.06.15 - 19.49.40.48.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzQyMTgsInB1ciI6ImJsb2JfaWQifX0=--651dac328e012b84d3d9ee6c66a73eec35909ca0/Desktop Screenshot 2026.06.15 - 19.49.40.48.png)
+![Desktop Screenshot 2026.06.15 - 19.52.41.87.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzQyMTksInB1ciI6ImJsb2JfaWQifX0=--7c7d279fe736b85d182c8791375f194505e150c5/Desktop Screenshot 2026.06.15 - 19.52.41.87.png)
+
+
+Mirroring the complete 3rd leg to create the 4th and final leg: 
+![PTC Creo Screenshot 2026.06.15 - 19.43.18.98.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzQyMTQsInB1ciI6ImJsb2JfaWQifX0=--d6064f2604cc6ab0efceaedbe39543bd56df5594/PTC Creo Screenshot 2026.06.15 - 19.43.18.98.png)
+
+Integrating legs into hip design and hips into body:
+![Desktop Screenshot 2026.06.15 - 19.55.51.27.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzQyMjMsInB1ciI6ImJsb2JfaWQifX0=--58832aeea897ff2cf6ca790dd1b4e1b2b87f9ff0/Desktop Screenshot 2026.06.15 - 19.55.51.27.png)
+
+
+### Recording Links
+
+- https://lookout.hackclub.com/api/media/d4fa9410-b54c-4d60-9c6d-766f5bab2c7e/video.mp4
+
+## Entry 76
+- ID: 14375
+- Author: Esia
+- Created At: 2026-06-16T03:15:57Z
+
+### Content
+
+I finished up the tire treads using some new cool Creo features I learned:
+
+![new_features.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzQyMjcsInB1ciI6ImJsb2JfaWQifX0=--1a9f394a5c1ab3c043df6ff9eaa16fc625543411/new_features.png)
+![image.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzQyMjQsInB1ciI6ImJsb2JfaWQifX0=--764c89751536513d75e1f0ac83d29ef6940c7249/image.png)
+
+And spent like two hours getting MIST's holes ready for hardware (ensuring tolerances are right, chamfers are right, etc.)
+
+![PTC Creo Screenshot 2026.06.15 - 20.11.22.42.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzQyMjYsInB1ciI6ImJsb2JfaWQifX0=--ce8c310077647f68d937023b4058950af95481b5/PTC Creo Screenshot 2026.06.15 - 20.11.22.42.png)
+
+That's like all I did for two hours. It takes too much time to mount stuff. Idk.
+
+![image.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzQyMjUsInB1ciI6ImJsb2JfaWQifX0=--39a4523472ee651bcb66272d56759114ca2b6c5a/image.png)
+
+### Recording Links
+
+- https://lookout.hackclub.com/api/media/c2666c3a-642f-4bf8-bb09-4294c9b85190/video.mp4
+- https://lookout.hackclub.com/api/media/49c617d4-8280-4ad7-bd09-ccdec21e606f/video.mp4
+- https://lookout.hackclub.com/api/media/5d425d0f-c2d1-44bf-87df-823e313ed28b/video.mp4
+
+## Entry 77
+- ID: 14441
+- Author: Esia
+- Created At: 2026-06-16T03:35:14Z
+
+### Content
+
+I mounted around 90% of the hardware that I left for the end of the project (mostly screws and nuts) with the 10% remaining having been the hardware on William's arm which I was still figuring out if him or I would be taking care of it.
+
+I sourced all of the screws and nuts from McMaster-Carr which has a wide variety of hardware:
+![image.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzQyMzQsInB1ciI6ImJsb2JfaWQifX0=--e979a750a2b8f418580c3e1e1f3b34150ae5aab7/image.png)
+
+I spent all of the time during this recording cycling between McMasterr and Creo resizing holes and exporting screw models for my use where I excruciatingly hand assembled each and every screw and nut onto MIST across the entire assembly.
+
+![to spend 6 hours mounting screws and nuts.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzQyMzgsInB1ciI6ImJsb2JfaWQifX0=--53e97ce578637eef1c5c1ffb761cc8363d0b0f8c/to spend 6 hours mounting screws and nuts.png)
+
+
+### Recording Links
+
+- https://lookout.hackclub.com/api/media/51c69037-bf4a-466c-9155-d2f81fe52ec3/video.mp4
+
+## Entry 78
+- ID: 14449
+- Author: Esia
+- Created At: 2026-06-16T03:49:16Z
+
+### Content
+
+Here I finished mounting all the hardware entirely. All screws and nuts on the base model without electronics had been assembled, including on the arm, and I moved onto assembling the electronics.
+
+![mist_hardware.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzQyNDIsInB1ciI6ImJsb2JfaWQifX0=--2bedb1a80f8c7002b5b8b4e0dedceaffb793c766/mist_hardware.png)
+
+
+### Recording Links
+
+- https://lookout.hackclub.com/api/media/bd758851-1d0e-45a6-8e8b-6b8982dacbd4/video.mp4
+
+## Entry 79
+- ID: 14451
+- Author: Esia
+- Created At: 2026-06-16T04:01:44Z
+
+### Content
+
+After some intensive research for CAD models matching the electronics we're using, I was able to find some accurate models to mount onto MIST. The first two electronics I tackled were the Raspberry Pi and screen, which after a bit of research I discovered could actually and are supposed to be mounted on each other directly, following a connection directly to the Raspberry Pi that streams both power and video to the screen.
+
+![image.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzQyNDQsInB1ciI6ImJsb2JfaWQifX0=--beb0b31ef6671a08535be388b5840c52829ce59d/image.png)
+![image.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzQyNDUsInB1ciI6ImJsb2JfaWQifX0=--3bd6c6a267938895bfd86617ad97eac50400b58f/image.png)
+
+The first version of the mount that I designed: 
+![image.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzQyNDcsInB1ciI6ImJsb2JfaWQifX0=--662efdacb58a99319238dc7f453e89c30fca4769/image.png)
+
+After some feedback from Umarbek I also rounded the corners on the case and it's mount, giving MIST a more premium look, as though she's wearing a visor:
+
+![image.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzQyNDgsInB1ciI6ImJsb2JfaWQifX0=--bb198d193165b3e493d8b31e73544f92af6f1dc2/image.png)
+
+
+### Recording Links
+
+- https://lookout.hackclub.com/api/media/0b746458-c697-45b8-b6ad-2de9df7d19e6/video.mp4
+
+## Entry 80
+- ID: 14454
+- Author: Esia
+- Created At: 2026-06-16T04:17:43Z
+
+### Content
+
+Approaching the end of the design process, with the electronics selected and hard work already done from past meetings with Umarbek and William I really just had them remaining to mount:
+
+MPU6050
+PCA9685 x2
+Mini PDB x2
+Large PDB
+UBEC x2
+Camera
+Lipo Battery
+ESCs (motor controllers) x4
+
+Aside from the electronics, I also added some finishing touches and polish that gave more life to the model and added to the accuracy and faithfulness to the show:
+
+![Screenshot 2026-06-15 210328.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzQyNTEsInB1ciI6ImJsb2JfaWQifX0=--6980abb91990eb4c85489faf1ecf3d1434d9be09/Screenshot 2026-06-15 210328.png)
+![Screenshot 2026-06-15 210404.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzQyNTIsInB1ciI6ImJsb2JfaWQifX0=--c79e384ce069268182ba5647a5ad144fceea3737/Screenshot 2026-06-15 210404.png)
+
+I also made the lid be removable and screw back on because it was the simplest way I figured we'd access the electronics inside MIST:
+
+Empty brain MIST
+![image.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzQyNTMsInB1ciI6ImJsb2JfaWQifX0=--18bd2cf45abb5bfd16879cf136170f8224617ef8/image.png)
+
+Anyway, here's some photos of where I mounted the electronics:
+![image.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzQyNTUsInB1ciI6ImJsb2JfaWQifX0=--0488b02c530f9a032d7b915951c106bb82db1ed5/image.png)
+PCA9685 x2
+Mini PDB x2
+Large PDB
+UBEC x2
+Lipo Battery
+
+![image.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzQyNTgsInB1ciI6ImJsb2JfaWQifX0=--4cb8f7479dfdbc85a3a43bf6310a15f722efebb4/image.png)
+![image.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzQyNTksInB1ciI6ImJsb2JfaWQifX0=--4b6350f2354eb63531eb25108b6172445289fc79/image.png)
+![image.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzQyNjAsInB1ciI6ImJsb2JfaWQifX0=--92a665faa045f0b688452c82479a822005926d60/image.png)
+Camera
+
+![mpu6050.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzQyNjEsInB1ciI6ImJsb2JfaWQifX0=--363f275360c53683cfe22d813074fe937a432add/mpu6050.png)
+MPU6050
+
+![ESCs.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzQyNjIsInB1ciI6ImJsb2JfaWQifX0=--6c6eacc70ce16b9753bc0cb3edd58650718e1e78/ESCs.png)
+ESCs (motor controllers) x4
+Mounted with red mounting tape to the walls of MIST's legs.
+
+![Naked_Model.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzQyNjMsInB1ciI6ImJsb2JfaWQifX0=--d5d06c5188a85e00b7f46cd9719ae8799a829eb2/Naked_Model.png)
+
+Anyhow, that's all. Mist's CAD is done. I'm ready to work on finishing up the github repository, BOM, and wiring/assembly guides to get it ready for submission.
+
+
+### Recording Links
+
+- https://lookout.hackclub.com/api/media/e1031377-7b03-488f-8241-d773cc05c4b3/video.mp4
+
+## Entry 81
+- ID: 14459
+- Author: Esia
+- Created At: 2026-06-16T04:40:38Z
+
+### Content
+
+I worked solely on getting MIST ready for submission during this entire recording, minimizing costs in the BOM, getting visual shots of MIST for our zine, ensuring our wiring diagram is complete, to including all of our documentation and relevant info in the github.
+
+Currently, our project is in a state where we can submit it with complete firmware, CAD, and a zine, however I am looking toward improving the zine with more technical info on what MIST does as well as minimizing costs on the BOM to prevent rejection on the basis of cost.
+
+Here's some pictures of our current documents and models:
+![image.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzQyNzIsInB1ciI6ImJsb2JfaWQifX0=--b9faac80d6f5e60d4162a62d13c0586beefa8834/image.png)
+![image.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzQyNzMsInB1ciI6ImJsb2JfaWQifX0=--a5295ea748758d9f981ac3cc09ae748e466946ce/image.png)
+![image.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzQyNzQsInB1ciI6ImJsb2JfaWQifX0=--a3a33a1c3731488256f3b67e0c76539686536e9e/image.png)
+
+
+### Recording Links
+
+- https://lookout.hackclub.com/api/media/8ee33869-2e35-4fff-9d00-59d27895acde/video.mp4
