@@ -6,7 +6,7 @@ MIST is a robot in the form of a rice-cooker with legs, originating from the Pan
 ## Replication
 All of the instructions on recreating MIST to keep as a speedy robot pet for yourself are provided below.
 
-![hippo](assets/IMG_8586.gif)
+![mist_gif](assets/IMG_8565.gif)
 
 ### Software
 
