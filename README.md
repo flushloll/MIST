@@ -166,6 +166,9 @@ A mechanism to turn the head and rotate the screen around the body as a result w
 ### Joint improvements
 Additional revisions of the joints could likely be made using DC motors with encoders rather than servos to use space more efficiently and result in a more accurate replica of MIST from Pantheon.
 
+### Custom Electronics Solutions
+Custom designed ESCs and UBECs are some options of the custom electronics we could develop to reduce project cost.
+
 ### Budget Improvements
 MIST could be made cheaper overall by reducing the amount of motors/materials used overall. This solution is over-engineered to an extent.
 
