@@ -1,8 +1,8 @@
 # MIST — Journal Export
 
-- Exported at: 2026-06-16T04:41:19Z
+- Exported at: 2026-06-18T22:07:09Z
 - Project ID: 2463
-- Entries: 81
+- Entries: 83
 
 ## Entry 1
 - ID: 3694
@@ -1750,3 +1750,67 @@ Here's some pictures of our current documents and models:
 ### Recording Links
 
 - https://lookout.hackclub.com/api/media/8ee33869-2e35-4fff-9d00-59d27895acde/video.mp4
+
+## Entry 82
+- ID: 14771
+- Author: Umarbek
+- Created At: 2026-06-17T15:08:13Z
+
+### Content
+
+Unfortunately, the super-duper cool transparent MIST render wasn't something one of the reviewers liked, which they've told us informally as the actual review of our project hasn't started yet. Thus, we're completely redesigning the zine now, with many new elements, explanations and less fancy design. Here is the update: 
+
+![V4.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzUwNDcsInB1ciI6ImJsb2JfaWQifX0=--92a2b84874f48c581852c6388ffbf2b3b1dd0234/V4.png)
+
+
+### Recording Links
+
+- https://lookout.hackclub.com/api/media/2e334a14-49ef-452c-aabe-879cdb33a253/video.mp4
+- https://lookout.hackclub.com/api/media/5186ec76-eb80-4fa4-a67e-8586afc211e8/video.mp4
+- https://lookout.hackclub.com/api/media/60a6d17b-3786-42c4-9b10-2efec44f261b/video.mp4
+
+## Entry 83
+- ID: 14774
+- Author: Esia
+- Created At: 2026-06-17T15:38:09Z
+
+### Content
+
+Umarbek and I essentially entirely redid our zine in a SINGLE sitting to better align it with project requirements, particularly in showing how our project works and what exactly it's purpose is.
+
+Initially, this is what our project's zine looked like:
+![old_zine.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzUwNTIsInB1ciI6ImJsb2JfaWQifX0=--c0b15fa48b2e9b200360ef58dbfec652c547b5f5/old_zine.png)
+
+It looked breathtaking, but honestly it was unclear what our project was technically speaking. After this was brought to my attention by a fallout reviewer Sam Liu I prompted that Umarbek and I redesign our zine. Here was our first two attempts at a redesign, encapsulating more technical info and explaining how our project works:
+
+![Screenshot 2026-06-17 020432.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzUwNTMsInB1ciI6ImJsb2JfaWQifX0=--802e62e6bf9eab93ceb6a93427db0ffbd542f107/Screenshot 2026-06-17 020432.png)
+![Screenshot 2026-06-17 081001.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzUwNjMsInB1ciI6ImJsb2JfaWQifX0=--beb9399e8c2a21c66d4c9cb8e753a916eb913ecf/Screenshot 2026-06-17 081001.png)
+
+
+We didn't know where we were going with the design, we just knew we needed a way to see the robot and it's inner workings at the same time. We accomplished this by using two layers, one with the electronics over a layer of just MIST.
+
+It wasn't terrible but it lacked a cohesive theme and we couldn't decide on whether we wanted it to appear toony with thick outlines or bold similar to that of a Times magazine:
+![image.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzUwNTQsInB1ciI6ImJsb2JfaWQifX0=--a2a4164bf869d6c4a69c94aee1d7c84b8bba94b9/image.png)
+
+Liking how the outlines looked though, we leaned toward a toony style and tried to incorporate this in our next iteration: 
+![Screenshot 2026-06-17 040559.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzUwNTcsInB1ciI6ImJsb2JfaWQifX0=--222662d0ce42222cdb257e7112fd1e7f3addbc0e/Screenshot 2026-06-17 040559.png)
+
+With this addition, our zine started to stop looking like a mess and more like a hackclub magazine. A few more iterations and some 3 hours later we came up with this:
+
+![Screenshot 2026-06-17 080923.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzUwNjIsInB1ciI6ImJsb2JfaWQifX0=--db62e713eb2fba68723591b83f58e4ebef465119/Screenshot 2026-06-17 080923.png)
+
+and this:
+
+![Screenshot 2026-06-17 071353.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzUwNTgsInB1ciI6ImJsb2JfaWQifX0=--2c5d62f6de6b93ced224f5031c94db07687b0834/Screenshot 2026-06-17 071353.png)
+
+Which we mildly changed into our final zine iteration:
+![V4.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzUwNjQsInB1ciI6ImJsb2JfaWQifX0=--d922bf17e23aab48c62a62aa46452c4221744d48/V4.png)
+
+With that, MIST was complete! Thank you for following our journey if you've read up to here. Check out MIST on our github: https://github.com/flushloll/MIST
+
+![image.png](/user-attachments/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MzUwNjUsInB1ciI6ImJsb2JfaWQifX0=--26368bdfae777dbc38040c212eaae8c677717634/image.png)
+
+
+### Recording Links
+
+- https://lookout.hackclub.com/api/media/9e6db43e-c138-487f-a930-4d6c7f7d6e47/video.mp4
